@@ -8,7 +8,7 @@ class Solve1: PuzzleSolver {
 	}
 
 	func solveBExamples() -> Bool {
-		true
+		solveB("Example1") == 5
 	}
 
 	var answerA = "1527"
@@ -19,8 +19,7 @@ class Solve1: PuzzleSolver {
 	}
 
 	func solveB() -> String {
-		let file = FileHelper.load("Input1")
-		return solveB(input: file?[0] ?? "").description
+		solveB("Input1").description
 	}
 
 	func solveA(_ fileName: String) -> Int {
@@ -35,8 +34,17 @@ class Solve1: PuzzleSolver {
 		}
 		return score
 	}
+	
+	func solveB(_ fileName: String) -> Int {
+		let input = FileHelper.load(fileName)!.filter { !$0.isEmpty }
 
-	func solveB(input: String) -> Int {
-		0
+		let values = input.map { Int($0)! }
+		var score = 0
+		for i in 3..<input.count {
+			if values[i] > values[i-3] {
+				score += 1
+			}
+		}
+		return score
 	}
 }
