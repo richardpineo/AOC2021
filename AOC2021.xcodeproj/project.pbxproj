@@ -8,23 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		BF30E9B92757332C00AEC5D7 /* AOC2021App.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30E9B82757332C00AEC5D7 /* AOC2021App.swift */; };
-		BF30E9BB2757332C00AEC5D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30E9BA2757332C00AEC5D7 /* ContentView.swift */; };
 		BF30E9BD2757333000AEC5D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF30E9BC2757333000AEC5D7 /* Assets.xcassets */; };
 		BF30E9C02757333000AEC5D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF30E9BF2757333000AEC5D7 /* Preview Assets.xcassets */; };
 		BF30E9CA2757333000AEC5D7 /* AOC2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30E9C92757333000AEC5D7 /* AOC2021Tests.swift */; };
-		BF30E9D42757333000AEC5D7 /* AOC2021UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30E9D32757333000AEC5D7 /* AOC2021UITests.swift */; };
-		BF30E9D62757333000AEC5D7 /* AOC2021UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30E9D52757333000AEC5D7 /* AOC2021UITestsLaunchTests.swift */; };
+		BF30E9E32757336200AEC5D7 /* Puzzles2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30E9E22757336200AEC5D7 /* Puzzles2021.swift */; };
+		BF30E9E8275733D800AEC5D7 /* AOCLib in Frameworks */ = {isa = PBXBuildFile; productRef = BF30E9E7275733D800AEC5D7 /* AOCLib */; };
+		BF30E9EB275734BE00AEC5D7 /* Puzzles2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30E9E22757336200AEC5D7 /* Puzzles2021.swift */; };
+		BF30E9F0275734E800AEC5D7 /* Input1.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF30E9EE275734E800AEC5D7 /* Input1.txt */; };
+		BF30E9F1275734E800AEC5D7 /* Solve1.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30E9EF275734E800AEC5D7 /* Solve1.swift */; };
+		BF30E9F22757352200AEC5D7 /* Solve1.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30E9EF275734E800AEC5D7 /* Solve1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		BF30E9C62757333000AEC5D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BF30E9AD2757332C00AEC5D7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BF30E9B42757332C00AEC5D7;
-			remoteInfo = AOC2021;
-		};
-		BF30E9D02757333000AEC5D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BF30E9AD2757332C00AEC5D7 /* Project object */;
 			proxyType = 1;
@@ -36,14 +32,13 @@
 /* Begin PBXFileReference section */
 		BF30E9B52757332C00AEC5D7 /* AOC2021.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AOC2021.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF30E9B82757332C00AEC5D7 /* AOC2021App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AOC2021App.swift; sourceTree = "<group>"; };
-		BF30E9BA2757332C00AEC5D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BF30E9BC2757333000AEC5D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF30E9BF2757333000AEC5D7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BF30E9C52757333000AEC5D7 /* AOC2021Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AOC2021Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF30E9C92757333000AEC5D7 /* AOC2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AOC2021Tests.swift; sourceTree = "<group>"; };
-		BF30E9CF2757333000AEC5D7 /* AOC2021UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AOC2021UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF30E9D32757333000AEC5D7 /* AOC2021UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AOC2021UITests.swift; sourceTree = "<group>"; };
-		BF30E9D52757333000AEC5D7 /* AOC2021UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AOC2021UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BF30E9E22757336200AEC5D7 /* Puzzles2021.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Puzzles2021.swift; sourceTree = "<group>"; };
+		BF30E9EE275734E800AEC5D7 /* Input1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Input1.txt; sourceTree = "<group>"; };
+		BF30E9EF275734E800AEC5D7 /* Solve1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solve1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,17 +46,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF30E9E8275733D800AEC5D7 /* AOCLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BF30E9C22757333000AEC5D7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BF30E9CC2757333000AEC5D7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -74,9 +63,9 @@
 		BF30E9AC2757332C00AEC5D7 = {
 			isa = PBXGroup;
 			children = (
+				BF30E9E42757339C00AEC5D7 /* Packages */,
 				BF30E9B72757332C00AEC5D7 /* AOC2021 */,
 				BF30E9C82757333000AEC5D7 /* AOC2021Tests */,
-				BF30E9D22757333000AEC5D7 /* AOC2021UITests */,
 				BF30E9B62757332C00AEC5D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,7 +75,6 @@
 			children = (
 				BF30E9B52757332C00AEC5D7 /* AOC2021.app */,
 				BF30E9C52757333000AEC5D7 /* AOC2021Tests.xctest */,
-				BF30E9CF2757333000AEC5D7 /* AOC2021UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,8 +82,9 @@
 		BF30E9B72757332C00AEC5D7 /* AOC2021 */ = {
 			isa = PBXGroup;
 			children = (
+				BF30E9EC275734D800AEC5D7 /* Puzzles */,
+				BF30E9E22757336200AEC5D7 /* Puzzles2021.swift */,
 				BF30E9B82757332C00AEC5D7 /* AOC2021App.swift */,
-				BF30E9BA2757332C00AEC5D7 /* ContentView.swift */,
 				BF30E9BC2757333000AEC5D7 /* Assets.xcassets */,
 				BF30E9BE2757333000AEC5D7 /* Preview Content */,
 			);
@@ -118,13 +107,28 @@
 			path = AOC2021Tests;
 			sourceTree = "<group>";
 		};
-		BF30E9D22757333000AEC5D7 /* AOC2021UITests */ = {
+		BF30E9E42757339C00AEC5D7 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				BF30E9D32757333000AEC5D7 /* AOC2021UITests.swift */,
-				BF30E9D52757333000AEC5D7 /* AOC2021UITestsLaunchTests.swift */,
 			);
-			path = AOC2021UITests;
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		BF30E9EC275734D800AEC5D7 /* Puzzles */ = {
+			isa = PBXGroup;
+			children = (
+				BF30E9ED275734E800AEC5D7 /* 1 */,
+			);
+			path = Puzzles;
+			sourceTree = "<group>";
+		};
+		BF30E9ED275734E800AEC5D7 /* 1 */ = {
+			isa = PBXGroup;
+			children = (
+				BF30E9EE275734E800AEC5D7 /* Input1.txt */,
+				BF30E9EF275734E800AEC5D7 /* Solve1.swift */,
+			);
+			path = 1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +147,9 @@
 			dependencies = (
 			);
 			name = AOC2021;
+			packageProductDependencies = (
+				BF30E9E7275733D800AEC5D7 /* AOCLib */,
+			);
 			productName = AOC2021;
 			productReference = BF30E9B52757332C00AEC5D7 /* AOC2021.app */;
 			productType = "com.apple.product-type.application";
@@ -165,24 +172,6 @@
 			productReference = BF30E9C52757333000AEC5D7 /* AOC2021Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BF30E9CE2757333000AEC5D7 /* AOC2021UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BF30E9DF2757333000AEC5D7 /* Build configuration list for PBXNativeTarget "AOC2021UITests" */;
-			buildPhases = (
-				BF30E9CB2757333000AEC5D7 /* Sources */,
-				BF30E9CC2757333000AEC5D7 /* Frameworks */,
-				BF30E9CD2757333000AEC5D7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BF30E9D12757333000AEC5D7 /* PBXTargetDependency */,
-			);
-			name = AOC2021UITests;
-			productName = AOC2021UITests;
-			productReference = BF30E9CF2757333000AEC5D7 /* AOC2021UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -200,10 +189,6 @@
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = BF30E9B42757332C00AEC5D7;
 					};
-					BF30E9CE2757333000AEC5D7 = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = BF30E9B42757332C00AEC5D7;
-					};
 				};
 			};
 			buildConfigurationList = BF30E9B02757332C00AEC5D7 /* Build configuration list for PBXProject "AOC2021" */;
@@ -215,13 +200,15 @@
 				Base,
 			);
 			mainGroup = BF30E9AC2757332C00AEC5D7;
+			packageReferences = (
+				BF30E9E6275733D800AEC5D7 /* XCRemoteSwiftPackageReference "AOCLib" */,
+			);
 			productRefGroup = BF30E9B62757332C00AEC5D7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				BF30E9B42757332C00AEC5D7 /* AOC2021 */,
 				BF30E9C42757333000AEC5D7 /* AOC2021Tests */,
-				BF30E9CE2757333000AEC5D7 /* AOC2021UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -232,18 +219,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF30E9C02757333000AEC5D7 /* Preview Assets.xcassets in Resources */,
+				BF30E9F0275734E800AEC5D7 /* Input1.txt in Resources */,
 				BF30E9BD2757333000AEC5D7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BF30E9C32757333000AEC5D7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BF30E9CD2757333000AEC5D7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -257,8 +238,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF30E9BB2757332C00AEC5D7 /* ContentView.swift in Sources */,
+				BF30E9E32757336200AEC5D7 /* Puzzles2021.swift in Sources */,
 				BF30E9B92757332C00AEC5D7 /* AOC2021App.swift in Sources */,
+				BF30E9F1275734E800AEC5D7 /* Solve1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,16 +248,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF30E9EB275734BE00AEC5D7 /* Puzzles2021.swift in Sources */,
 				BF30E9CA2757333000AEC5D7 /* AOC2021Tests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BF30E9CB2757333000AEC5D7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BF30E9D42757333000AEC5D7 /* AOC2021UITests.swift in Sources */,
-				BF30E9D62757333000AEC5D7 /* AOC2021UITestsLaunchTests.swift in Sources */,
+				BF30E9F22757352200AEC5D7 /* Solve1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,11 +261,6 @@
 			isa = PBXTargetDependency;
 			target = BF30E9B42757332C00AEC5D7 /* AOC2021 */;
 			targetProxy = BF30E9C62757333000AEC5D7 /* PBXContainerItemProxy */;
-		};
-		BF30E9D12757333000AEC5D7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BF30E9B42757332C00AEC5D7 /* AOC2021 */;
-			targetProxy = BF30E9D02757333000AEC5D7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -519,52 +489,6 @@
 			};
 			name = Release;
 		};
-		BF30E9E02757333000AEC5D7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WE3Z3S3MCF;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pineo.AOC2021UITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AOC2021;
-			};
-			name = Debug;
-		};
-		BF30E9E12757333000AEC5D7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WE3Z3S3MCF;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pineo.AOC2021UITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AOC2021;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -595,16 +519,26 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BF30E9DF2757333000AEC5D7 /* Build configuration list for PBXNativeTarget "AOC2021UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BF30E9E02757333000AEC5D7 /* Debug */,
-				BF30E9E12757333000AEC5D7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BF30E9E6275733D800AEC5D7 /* XCRemoteSwiftPackageReference "AOCLib" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/richardpineo/AOCLib";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BF30E9E7275733D800AEC5D7 /* AOCLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF30E9E6275733D800AEC5D7 /* XCRemoteSwiftPackageReference "AOCLib" */;
+			productName = AOCLib;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BF30E9AD2757332C00AEC5D7 /* Project object */;
 }

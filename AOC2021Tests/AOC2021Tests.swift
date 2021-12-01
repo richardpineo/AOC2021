@@ -1,33 +1,53 @@
-//
-//  AOC2021Tests.swift
-//  AOC2021Tests
-//
-//  Created by Richard Pineo on 11/30/21.
-//
 
+import AOCLib
+import Foundation
 import XCTest
-@testable import AOC2021
 
-class AOC2021Tests: XCTestCase {
+class Test2021: XCTestCase {
+	func testOne() throws {
+		testOne(Solve1())
+	}
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+	func testAll() throws {
+		let totalTime = Stopwatch()
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+		let puzzles = Puzzles2021()
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+		puzzles.puzzles.puzzles.forEach { puzzle in
+			print("Testing \(puzzle.id): \(puzzle.name)")
+			testOne(puzzle.solver)
+		}
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+		print("⌚ Total time elapsed: \(totalTime.elapsed)")
+	}
 
+	func testOne(_ solver: PuzzleSolver) {
+		let totalTime = Stopwatch()
+
+		if solver.shouldTestExamplesA ?? true {
+			let stopwatch = Stopwatch()
+			XCTAssertTrue(solver.solveAExamples(), "Example A failed")
+			print("  ⌚ Examples A took \(stopwatch.elapsed)")
+		}
+		if solver.shouldTestExamplesB ?? true {
+			let stopwatch = Stopwatch()
+			XCTAssertTrue(solver.solveBExamples(), "Example B failed")
+			print("  ⌚ Examples B took \(stopwatch.elapsed)")
+		}
+
+		if solver.shouldTestA ?? true {
+			let stopwatch = Stopwatch()
+			let a = solver.solveA()
+			XCTAssertEqual(a, solver.answerA, "Part A failed. Expected: \(solver.answerA), Got: \(a)")
+			print("  ⌚ Part A took \(stopwatch.elapsed)")
+		}
+		if solver.shouldTestB ?? true {
+			let stopwatch = Stopwatch()
+			let b = solver.solveB()
+			XCTAssertEqual(b, solver.answerB, "Part B failed. Expected: \(solver.answerB), Got: \(b)")
+			print("  ⌚ Part B took \(stopwatch.elapsed)")
+		}
+
+		print("  ⌚ Total: \(totalTime.elapsed)")
+	}
 }

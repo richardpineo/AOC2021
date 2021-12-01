@@ -1,17 +1,14 @@
-//
-//  AOC2021App.swift
-//  AOC2021
-//
-//  Created by Richard Pineo on 11/30/21.
-//
 
+import AOCLib
 import SwiftUI
 
 @main
-struct AOC2021App: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+struct AOC2015App: App {
+	let puzzles = Puzzles2021()
+	var body: some Scene {
+		WindowGroup {
+			MainView(repo: puzzles)
+				.environmentObject(PuzzleProcessing.application(puzzles: puzzles.puzzles))
+		}
+	}
 }
