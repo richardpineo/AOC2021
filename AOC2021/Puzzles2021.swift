@@ -7,7 +7,7 @@ class Puzzles2021: PuzzlesRepo {
 		let year = 2021
 
 		puzzles = Puzzles(puzzles: [
-			Puzzle(year: year, id: 1, name: "Boooogus") { Solve1() },
+			Puzzle(year: year, id: 1, name: "Sonar Sweep") { Solve1() },
 		])
 	}
 
