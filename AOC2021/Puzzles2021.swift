@@ -9,6 +9,7 @@ class Puzzles2021: PuzzlesRepo {
 		puzzles = Puzzles(puzzles: [
 			Puzzle(year: year, id: 1, name: "Sonar Sweep") { Solve1() },
 			Puzzle(year: year, id: 2, name: "Dive!") { Solve2() },
+			Puzzle(year: year, id: 3, name: "Binary Diagnostic") { Solve3() },
 		])
 	}
 
