@@ -12,7 +12,7 @@ class Solve3: PuzzleSolver {
 	}
 
 	var answerA = "3277364"
-	var answerB = ""
+	var answerB = "5736383"
 
 	func solveA() -> String {
 		solveA("Input3").description
@@ -27,10 +27,10 @@ class Solve3: PuzzleSolver {
 		for line in 0..<lines.count {
 			ones += lines[line].character(at: pos) == "1" ? 1 : 0
 		}
-		return ones >= lines.count / 2
+		return Double(ones) >= Double(lines.count) / 2.0
 	}
 	
-	func calc(lines: [String], onesDominant: Bool) -> Int {
+	func calcA(lines: [String], onesDominant: Bool) -> Int {
 		let bitCount = lines[0].count
 		var final: [Int] = .init(repeating: 0, count: bitCount)
 		for bit in 0..<bitCount {
@@ -48,13 +48,34 @@ class Solve3: PuzzleSolver {
 
 	func solveA(_ fileName: String) -> Int {
 		let input = FileHelper.load(fileName)!.filter { !$0.isEmpty }
-		
-		let gamma = calc(lines: input, onesDominant: true)
-		let epsilon = calc(lines: input, onesDominant: false)
+		let gamma = calcA(lines: input, onesDominant: true)
+		let epsilon = calcA(lines: input, onesDominant: false)
 		return gamma * epsilon
+	}
+		
+	func filterB(lines: [String], bit: Int, keepDominant: Bool) -> [String] {
+		let oneDom = isOneDominant(lines: lines, pos: bit)
+		let matchChar: Character = keepDominant ?
+		(oneDom ? "1" : "0") :
+		(oneDom ? "0" : "1")
+		return lines.filter { $0.character(at: bit) == matchChar }
+	}
+
+	func calcB(lines: [String], keepDominant: Bool) -> Int {
+		var temp = lines
+		var bitPos = 0
+		while temp.count > 1 {
+			temp = filterB(lines: temp, bit: bitPos, keepDominant: keepDominant)
+			bitPos += 1
+		}
+		return Int(temp[0].binaryToNumber())
 	}
 
 	func solveB(_ fileName: String) -> Int {
-		0
+		let input = FileHelper.load(fileName)!.filter { !$0.isEmpty }
+		
+		let oxygen = calcB(lines: input, keepDominant: true)
+		let co2 = calcB(lines: input, keepDominant: false)
+		return oxygen * co2
 	}
 }
