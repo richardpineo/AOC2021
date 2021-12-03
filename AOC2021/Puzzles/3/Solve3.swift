@@ -8,8 +8,7 @@ class Solve3: PuzzleSolver {
 	}
 
 	func solveBExamples() -> Bool {
-		true
-//		solveB("Example3") == 900
+		solveB("Example3") == 230
 	}
 
 	var answerA = "3277364"
@@ -22,27 +21,37 @@ class Solve3: PuzzleSolver {
 	func solveB() -> String {
 		solveB("Input3").description
 	}
-
-	func solveA(_ fileName: String) -> Int {
-		let input = FileHelper.loadAndTokenize(fileName)
-		let bitCount = input[0][0].count
-		var gamma: [Int] = .init(repeating: 0, count: bitCount)
-		var epsilon: [Int] = .init(repeating: 0, count: bitCount)
+	
+	func isOneDominant(lines: [String], pos: Int) -> Bool {
+		var ones = 0
+		for line in 0..<lines.count {
+			ones += lines[line].character(at: pos) == "1" ? 1 : 0
+		}
+		return ones >= lines.count / 2
+	}
+	
+	func calc(lines: [String], onesDominant: Bool) -> Int {
+		let bitCount = lines[0].count
+		var final: [Int] = .init(repeating: 0, count: bitCount)
 		for bit in 0..<bitCount {
-			var ones = 0
-			for line in 0..<input.count {
-				ones += input[line][0].character(at: bit) == "1" ? 1 : 0
+			let dom = isOneDominant(lines: lines, pos: bit)
+			if onesDominant {
+				final[bit] = dom ? 1 : 0
+			} else {
+				final[bit] = dom ? 0 : 1
 			}
-			let isOneDominant = ones > input.count / 2
-			gamma[bit] = isOneDominant ? 1 : 0
-			epsilon[bit] = isOneDominant ? 0 : 1
 		}
 		
-		let gammaStr = gamma.map { $0.description }.joined()
-		let gammaNum = gammaStr.binaryToNumber()
-		let epsilonStr = epsilon.map { $0.description }.joined()
-		let epsilonNum = epsilonStr.binaryToNumber()
-		return Int(epsilonNum) * Int(gammaNum)
+		let finalStr = final.map { $0.description }.joined()
+		return Int(finalStr.binaryToNumber())
+	}
+
+	func solveA(_ fileName: String) -> Int {
+		let input = FileHelper.load(fileName)!.filter { !$0.isEmpty }
+		
+		let gamma = calc(lines: input, onesDominant: true)
+		let epsilon = calc(lines: input, onesDominant: false)
+		return gamma * epsilon
 	}
 
 	func solveB(_ fileName: String) -> Int {
