@@ -8,12 +8,11 @@ class Solve4: PuzzleSolver {
 	}
 
 	func solveBExamples() -> Bool {
-//		solveB("Example4") ==
-		true
+		solveB("Example4") == 1924
 	}
 
 	var answerA = "25410"
-	var answerB = "0"
+	var answerB = "2730"
 	
 	class Board {
 		struct Spot {
@@ -50,6 +49,10 @@ class Solve4: PuzzleSolver {
 			}
 			return false
 		}
+		
+		var sumUnmarked: Int {
+			spots.reduce(0 ) { $0 + ($1.marked ? 0 : $1.num) }
+		}
 	}
 
 	func solveA() -> String {
@@ -63,21 +66,6 @@ class Solve4: PuzzleSolver {
 	struct Game {
 		let pulls: [Int]
 		let boards: [Board]
-		
-		func play() -> Int {
-			for pullIndex in 0..<pulls.count {
-				let pull = pulls[pullIndex]
-				boards.forEach { $0.mark(num: pull)}
-				
-				if let bingo = boards.first(where: { $0.bingo }) {
-					let sumUnmarked = bingo.spots.reduce(0 ) {
-						$0 + ($1.marked ? 0 : $1.num)
-					}
-					return sumUnmarked * pull
-				}
-			}
-			return -666
-		}
 	}
 
 	private func loadGame(_ fileName: String) -> Game {
@@ -102,12 +90,34 @@ class Solve4: PuzzleSolver {
 	
 	func solveA(_ fileName: String) -> Int {
 		let game = loadGame(fileName)
-		return game.play()
+
+		for pullIndex in 0..<game.pulls.count {
+			let pull = game.pulls[pullIndex]
+			game.boards.forEach { $0.mark(num: pull)}
+			
+			if let bingo = game.boards.first(where: { $0.bingo }) {
+				return bingo.sumUnmarked * pull
+			}
+		}
+		return -666
 	}
 
 	func solveB(_ fileName: String) -> Int {
-		let input = FileHelper.load(fileName)!.filter { !$0.isEmpty }
-
-		return 0
+		let game = loadGame(fileName)
+		
+		for pullIndex in 0..<game.pulls.count {
+			let pull = game.pulls[pullIndex]
+			
+			guard let bingoLess = game.boards.first(where: { !$0.bingo }) else {
+				return -666
+			}
+			
+			game.boards.forEach { $0.mark(num: pull)}
+			
+			if game.boards.allSatisfy( { $0.bingo } ) {
+				return bingoLess.sumUnmarked * pull
+			}
+		}
+		return -666
 	}
 }
