@@ -26,25 +26,25 @@ class Test2021: XCTestCase {
 
 		if solver.shouldTestExamplesA ?? true {
 			let stopwatch = Stopwatch()
-			XCTAssertTrue(solver.solveAExamples(), "Example A failed")
+			XCTAssertTrue(solver.solveAExamples(), "🔴 Example A failed")
 			print("  ⌚ Examples A took \(stopwatch.elapsed)")
 		}
 		if solver.shouldTestExamplesB ?? true {
 			let stopwatch = Stopwatch()
-			XCTAssertTrue(solver.solveBExamples(), "Example B failed")
+			XCTAssertTrue(solver.solveBExamples(), "🔴 Example B failed")
 			print("  ⌚ Examples B took \(stopwatch.elapsed)")
 		}
 
 		if solver.shouldTestA ?? true {
 			let stopwatch = Stopwatch()
 			let a = solver.solveA()
-			XCTAssertEqual(a, solver.answerA, "Part A failed. Expected: \(solver.answerA), Got: \(a)")
+			XCTAssertEqual(a, solver.answerA, "🔴 Part A failed. Expected: \(solver.answerA), Got: \(a)")
 			print("  ⌚ Part A took \(stopwatch.elapsed)")
 		}
 		if solver.shouldTestB ?? true {
 			let stopwatch = Stopwatch()
 			let b = solver.solveB()
-			XCTAssertEqual(b, solver.answerB, "Part B failed. Expected: \(solver.answerB), Got: \(b)")
+			XCTAssertEqual(b, solver.answerB, "🔴 Part B failed. Expected: \(solver.answerB), Got: \(b)")
 			print("  ⌚ Part B took \(stopwatch.elapsed)")
 		}
 
