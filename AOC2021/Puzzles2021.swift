@@ -10,6 +10,7 @@ class Puzzles2021: PuzzlesRepo {
 			Puzzle(year: year, id: 1, name: "Sonar Sweep") { Solve1() },
 			Puzzle(year: year, id: 2, name: "Dive!") { Solve2() },
 			Puzzle(year: year, id: 3, name: "Binary Diagnostic") { Solve3() },
+			Puzzle(year: year, id: 4, name: "Giant Squid") { Solve4() },
 		])
 	}
 
