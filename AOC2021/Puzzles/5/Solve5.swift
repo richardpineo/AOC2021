@@ -4,22 +4,22 @@ import Foundation
 
 class Solve5: PuzzleSolver {
 	func solveAExamples() -> Bool {
-		solveA("Example5") == 5
+		solve("Example5", orthogonalOnly: true) == 5
 	}
 
 	func solveBExamples() -> Bool {
-		solveB("Example5") == 0
+		solve("Example5", orthogonalOnly: false) == 12
 	}
 
 	var answerA = "4655"
-	var answerB = ""
+	var answerB = "20500"
 
 	func solveA() -> String {
-		solveA("Input5").description
+		solve("Input5", orthogonalOnly: true).description
 	}
 
 	func solveB() -> String {
-		solveB("Input5").description
+		solve("Input5", orthogonalOnly: false).description
 	}
 	
 	struct Line {
@@ -27,8 +27,7 @@ class Solve5: PuzzleSolver {
 		var p2: Position2D
 	}
 	
-	
-	func solveA(_ fileName: String) -> Int {
+	func solve(_ fileName: String, orthogonalOnly: Bool) -> Int {
 		let input = FileHelper.load(fileName)!.filter { !$0.isEmpty }
 		
 		let lines: [Line] = input.map {
@@ -39,7 +38,7 @@ class Solve5: PuzzleSolver {
 			)
 		}
 		
-		let orthogonal = lines.filter { $0.p1.x == $0.p2.x || $0.p1.y == $0.p2.y }
+		let filteredLines = orthogonalOnly ? lines.filter { $0.p1.x == $0.p2.x || $0.p1.y == $0.p2.y } : lines
 		
 		var coverage: Dictionary<Position2D, Int> = [:]
 
@@ -48,19 +47,16 @@ class Solve5: PuzzleSolver {
 			coverage[p] = c + 1
 		}
 		
-		orthogonal.forEach {
-			if $0.p1.x == $0.p2.x {
-				let start = min($0.p1.y, $0.p2.y)
-				let end = max($0.p1.y, $0.p2.y)
-				for i in start...end {
-					add(.init($0.p1.x, i))
-				}
-			} else {
-				let start = min($0.p1.x, $0.p2.x)
-				let end = max($0.p1.x, $0.p2.x)
-				for i in start...end {
-					add(.init(i, $0.p1.y))
-				}
+		filteredLines.forEach {
+		
+			let rangeX = $0.p2.x - $0.p1.x
+			let rangeY = $0.p2.y - $0.p1.y
+			let numSteps = max(abs(rangeX), abs(rangeY))
+			let stepX = rangeX / numSteps
+			let stepY = rangeY / numSteps
+			
+			for step in 0...numSteps {
+				add(.init($0.p1.x + step * stepX, $0.p1.y + step * stepY))
 			}
 		}
 		
@@ -68,9 +64,17 @@ class Solve5: PuzzleSolver {
 			$0 + ($1.value > 1 ? 1 : 0)
 		}
 		return count
-	}
-
-	func solveB(_ fileName: String) -> Int {
-		return -666
+		
+		/* Debug
+		func char(_ p: Position2D) -> String {
+			if let v = coverage[p] {
+				return v.description
+			}
+			return "."
+		}
+		
+		for col in 0...9 {
+			print((0...9).map( { char(.init($0, col)) }).joined())
+		} */
 	}
 }
