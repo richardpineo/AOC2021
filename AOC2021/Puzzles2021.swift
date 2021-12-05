@@ -11,6 +11,7 @@ class Puzzles2021: PuzzlesRepo {
 			Puzzle(year: year, id: 2, name: "Dive!") { Solve2() },
 			Puzzle(year: year, id: 3, name: "Binary Diagnostic") { Solve3() },
 			Puzzle(year: year, id: 4, name: "Giant Squid") { Solve4() },
+			Puzzle(year: year, id: 5, name: "Hydrothermal Venture") { Solve5() },
 		])
 	}
 
