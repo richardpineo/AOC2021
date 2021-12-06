@@ -8,44 +8,45 @@ class Solve6: PuzzleSolver {
 	}
 
 	func solveBExamples() -> Bool {
-		true
-//		solve("Example6", orthogonalOnly: false) == 12
+		solve("Example6", 256) == 26_984_457_539
 	}
 
 	var answerA = "395627"
-	var answerB = ""
+	var answerB = "1767323539209"
 
 	func solveA() -> String {
 		solve("Input6", 80).description
 	}
 
 	func solveB() -> String {
-		""
-	//	solve("Input5", orthogonalOnly: false).description
+		solve("Input6", 256).description
 	}
-	
+
 	func evolve(_ fish: [Int]) -> [Int] {
-		var newFish: Int = 0
-		var evolvedFish: [Int] = fish.map {
-			if $0 == 0 {
-				newFish += 1
-				return 6
-			}
-			return $0 - 1
+		var newAges = Array(repeating: 0, count: 9)
+
+		for age in 1 ... 8 {
+			newAges[age - 1] = fish[age]
 		}
-		
-		evolvedFish.append(contentsOf: Array<Int>(repeating: 8, count: newFish))
-		return evolvedFish
+		newAges[6] += fish[0]
+		newAges[8] = fish[0]
+		return newAges
 	}
 
 	func solve(_ fileName: String, _ rounds: Int) -> Int {
 		let input = FileHelper.load(fileName)!
-		var fish = input[0].components(separatedBy: ",").map { Int($0)! }
-		
-		for _ in 0..<rounds {
-			fish = evolve(fish)
+		let fish = input[0].components(separatedBy: ",").map { Int($0)! }
+
+		var ages = Array(repeating: 0, count: 9)
+		fish.forEach {
+			ages[$0] = ages[$0] + 1
 		}
 
-		return fish.count
+		for r in 0 ..< rounds {
+			ages = evolve(ages)
+			print("Round \(r): \(ages.reduce(0) { $0 + $1 })")
+		}
+
+		return ages.reduce(0) { $0 + $1 }
 	}
 }
