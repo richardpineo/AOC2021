@@ -29,7 +29,6 @@ class Solve8: PuzzleSolver {
 	// 5: 2, 3, 5
 	// 6: 0, 6, 9
 	// 7: 8
-	private let digitCount = [6, 2, 5, 5, 4, 5, 6, 3, 7, 6]
 
 	struct Test {
 		var signals: [String]
@@ -48,14 +47,14 @@ class Solve8: PuzzleSolver {
 			// 6 digits: 6, 9, 0
 			let sixes = signals.filter { $0.count == 6 }.map { Set($0) }
 			sixes.forEach {
-				// if not common with 1, then value is 6
+				// if not superset of 1, then value is 6
 				if !Set($0).isSuperset(of: Set(signalMap[1]!)) {
 					signalMap[6] = $0
-					// if common with 4, then value is 9
+					// if superset of 4, then value is 9
 				} else if Set($0).isSuperset(of: Set(signalMap[4]!)) {
 					signalMap[9] = $0
 				} else {
-					//  otherwise, value is 0
+					// otherwise, value is 0
 					signalMap[0] = $0
 				}
 			}
@@ -63,10 +62,10 @@ class Solve8: PuzzleSolver {
 			// 5 digits: 2, 3, 5
 			let fives = signals.filter { $0.count == 5 }.map { Set($0) }
 			fives.forEach {
-				//  if common with 1, then value is 3
+				//  if superset of 1, then value is 3
 				if Set($0).isSuperset(of: Set(signalMap[1]!)) {
 					signalMap[3] = $0
-					// if common with 6, then value is 5
+					// if 6 is superset of us, then value is 5
 				} else if Set(signalMap[6]!).isSuperset(of: Set($0)) {
 					signalMap[5] = $0
 				} else {
