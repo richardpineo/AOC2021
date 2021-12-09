@@ -8,18 +8,18 @@ class Solve9: PuzzleSolver {
 	}
 
 	func solveBExamples() -> Bool {
-		true
+		solveB("Example9") == 1134
 	}
 
 	var answerA = "572"
-	var answerB = ""
+	var answerB = "847044"
 
 	func solveA() -> String {
 		solveA("Input9").description
 	}
 
 	func solveB() -> String {
-		""
+		solveB("Input9").description
 	}
 
 	struct Grid {
@@ -50,6 +50,40 @@ class Solve9: PuzzleSolver {
 			let lowest = party.min { value($0) < value($1) }!
 			return lowest == pos
 		}
+		
+		private func neighbors(_ pos: Position2D, includePos: Bool) -> [Position2D] {
+			pos.neighbors(includeSelf: includePos)
+				.filter { $0.cityDistance(pos) < 2 }
+				.filter { valid($0) }
+		}
+		
+		var lowPoints: [Position2D] {
+			var lowest: [Position2D] = []
+			for x in 0 ..< maxPos.x {
+				for y in 0 ..< maxPos.y {
+					if isLow(.init(x, y)) {
+						lowest.append(.init(x, y))
+					}
+				}
+			}
+			return lowest
+		}
+		
+		private func accumulateBasin(_ pos: Position2D, basin: inout Set<Position2D>) {
+			basin.insert(pos)
+			let toCheck = neighbors(pos, includePos: false)
+			toCheck.forEach {
+				if value($0) != 9 && !basin.contains($0) {
+					accumulateBasin($0, basin: &basin)
+				}
+			}
+		}
+		
+		func basinFor(_ pos: Position2D) -> [Position2D] {
+			var basin = Set<Position2D>()
+			accumulateBasin(pos, basin: &basin)
+			return Array(basin)
+		}
 
 		private var tubes: [Int]
 	}
@@ -57,17 +91,20 @@ class Solve9: PuzzleSolver {
 	func solveA(_ fileName: String) -> Int {
 		let values = FileHelper.load(fileName)!.filter { !$0.isEmpty }
 		let grid = Grid(values: values)
-		var lowest: [Position2D] = []
-		for x in 0 ..< grid.maxPos.x {
-			for y in 0 ..< grid.maxPos.y {
-				if grid.isLow(.init(x, y)) {
-					lowest.append(.init(x, y))
-				}
-			}
-		}
-		let risk = lowest.reduce(0) {
+		let risk = grid.lowPoints.reduce(0) {
 			$0 + 1 + grid.value($1)
 		}
 		return risk
+	}
+	
+	func solveB(_ fileName: String) -> Int {
+		let values = FileHelper.load(fileName)!.filter { !$0.isEmpty }
+		let grid = Grid(values: values)
+		let scores: [Int] = grid.lowPoints.map { lowPoint in
+			let basin = grid.basinFor(lowPoint)
+			return basin.count
+		}
+		let bestScores = scores.sorted().dropFirst(scores.count - 3)
+		return bestScores.reduce(1) { $0 * $1 }
 	}
 }
