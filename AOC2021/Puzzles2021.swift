@@ -15,6 +15,7 @@ class Puzzles2021: PuzzlesRepo {
 			Puzzle(year: year, id: 6, name: "Lanternfish") { Solve6() },
 			Puzzle(year: year, id: 7, name: "The Treachery of Whales") { Solve7() },
 			Puzzle(year: year, id: 8, name: "Seven Segment Search") { Solve8() },
+			Puzzle(year: year, id: 9, name: "Smoke Basin") { Solve9() },
 		])
 	}
 
