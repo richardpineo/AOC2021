@@ -50,13 +50,13 @@ class Solve9: PuzzleSolver {
 			let lowest = party.min { value($0) < value($1) }!
 			return lowest == pos
 		}
-		
+
 		private func neighbors(_ pos: Position2D, includePos: Bool) -> [Position2D] {
 			pos.neighbors(includeSelf: includePos)
 				.filter { $0.cityDistance(pos) < 2 }
 				.filter { valid($0) }
 		}
-		
+
 		var lowPoints: [Position2D] {
 			var lowest: [Position2D] = []
 			for x in 0 ..< maxPos.x {
@@ -68,17 +68,17 @@ class Solve9: PuzzleSolver {
 			}
 			return lowest
 		}
-		
+
 		private func accumulateBasin(_ pos: Position2D, basin: inout Set<Position2D>) {
 			basin.insert(pos)
 			let toCheck = neighbors(pos, includePos: false)
 			toCheck.forEach {
-				if value($0) != 9 && !basin.contains($0) {
+				if value($0) != 9, !basin.contains($0) {
 					accumulateBasin($0, basin: &basin)
 				}
 			}
 		}
-		
+
 		func basinFor(_ pos: Position2D) -> [Position2D] {
 			var basin = Set<Position2D>()
 			accumulateBasin(pos, basin: &basin)
@@ -96,7 +96,7 @@ class Solve9: PuzzleSolver {
 		}
 		return risk
 	}
-	
+
 	func solveB(_ fileName: String) -> Int {
 		let values = FileHelper.load(fileName)!.filter { !$0.isEmpty }
 		let grid = Grid(values: values)
@@ -106,5 +106,11 @@ class Solve9: PuzzleSolver {
 		}
 		let bestScores = scores.sorted().dropFirst(scores.count - 3)
 		return bestScores.reduce(1) { $0 * $1 }
+	}
+
+	var inputGrid: Grid {
+		let values = FileHelper.load("Input9")!.filter { !$0.isEmpty }
+		let grid = Grid(values: values)
+		return grid
 	}
 }

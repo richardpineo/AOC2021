@@ -11,6 +11,7 @@
 		BF03AD52275DD0D700B7657C /* Input6.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF03AD4F275DD0D700B7657C /* Input6.txt */; };
 		BF03AD53275DD0D700B7657C /* Solve6.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF03AD50275DD0D700B7657C /* Solve6.swift */; };
 		BF03AD54275DD0DB00B7657C /* Solve6.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF03AD50275DD0D700B7657C /* Solve6.swift */; };
+		BF0622C92761EB8400929D54 /* Puzzle9View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0622C82761EB8400929D54 /* Puzzle9View.swift */; };
 		BF1622A3276066D400FFFDEE /* Example7.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF1622A0276066D400FFFDEE /* Example7.txt */; };
 		BF1622A4276066D400FFFDEE /* Input7.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF1622A1276066D400FFFDEE /* Input7.txt */; };
 		BF1622A5276066D400FFFDEE /* Solve7.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1622A2276066D400FFFDEE /* Solve7.swift */; };
@@ -68,6 +69,7 @@
 		BF03AD4E275DD0D700B7657C /* Example6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Example6.txt; sourceTree = "<group>"; };
 		BF03AD4F275DD0D700B7657C /* Input6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Input6.txt; sourceTree = "<group>"; };
 		BF03AD50275DD0D700B7657C /* Solve6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solve6.swift; sourceTree = "<group>"; };
+		BF0622C82761EB8400929D54 /* Puzzle9View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puzzle9View.swift; sourceTree = "<group>"; };
 		BF1622A0276066D400FFFDEE /* Example7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Example7.txt; sourceTree = "<group>"; };
 		BF1622A1276066D400FFFDEE /* Input7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Input7.txt; sourceTree = "<group>"; };
 		BF1622A2276066D400FFFDEE /* Solve7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solve7.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				BF6BF59C2761D84A00246D6E /* Solve9.swift */,
 				BF6BF59D2761D84A00246D6E /* Input9.txt */,
 				BF6BF59E2761D84A00246D6E /* Example9.txt */,
+				BF0622C82761EB8400929D54 /* Puzzle9View.swift */,
 			);
 			path = 9;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				BF1622A5276066D400FFFDEE /* Solve7.swift in Sources */,
 				BF30E9E32757336200AEC5D7 /* Puzzles2021.swift in Sources */,
 				BF3C8AB0275BFAB3006390C5 /* Solve4.swift in Sources */,
+				BF0622C92761EB8400929D54 /* Puzzle9View.swift in Sources */,
 				BF30E9B92757332C00AEC5D7 /* AOC2021App.swift in Sources */,
 				BFACA91A27589F3F00C3C810 /* Solve2.swift in Sources */,
 				BF03AD53275DD0D700B7657C /* Solve6.swift in Sources */,

@@ -25,12 +25,18 @@ class Puzzles2021: PuzzlesRepo {
 
 	var puzzles: Puzzles
 
-	func hasDetails(id _: Int) -> Bool {
-		false
+	func hasDetails(id: Int) -> Bool {
+		id == 9
 	}
 
 	@ViewBuilder
-	func details(id _: Int) -> some View {
-		EmptyView()
+	func details(id: Int) -> some View {
+		switch id {
+		case 9:
+			Puzzle9View()
+
+		default:
+			EmptyView()
+		}
 	}
 }
