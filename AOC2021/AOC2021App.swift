@@ -3,7 +3,7 @@ import AOCLib
 import SwiftUI
 
 @main
-struct AOC2015App: App {
+struct AOC2021App: App {
 	let puzzles = Puzzles2021()
 	var body: some Scene {
 		WindowGroup {

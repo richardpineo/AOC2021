@@ -1,9 +1,10 @@
 
 import SwiftUI
+import AOCLib
 
 struct Puzzle9View: View {
 	private var columns: [GridItem]
-	private var grid: Solve9.Grid
+	private var grid: Grid2D
 
 	init() {
 		grid = Solve9().inputGrid

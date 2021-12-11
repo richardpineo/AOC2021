@@ -17,6 +17,7 @@ class Puzzles2021: PuzzlesRepo {
 			Puzzle(year: year, id: 8, name: "Seven Segment Search") { Solve8() },
 			Puzzle(year: year, id: 9, name: "Smoke Basin") { Solve9() },
 			Puzzle(year: year, id: 10, name: "Syntax Scoring") { Solve10() },
+			Puzzle(year: year, id: 11, name: "Dumbo Octopus") { Solve11() },
 		])
 	}
 
