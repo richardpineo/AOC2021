@@ -25,7 +25,7 @@ struct Puzzle9View: View {
 
 	private func color(val: Int) -> UIColor {
 		if val == 9 {
-			return .white
+			return .darkGray
 		}
 		if val == 0 {
 			return .black
