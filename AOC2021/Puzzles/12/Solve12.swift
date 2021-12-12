@@ -20,13 +20,23 @@ class Solve12: PuzzleSolver {
 		true
 	}
 
-	var answerA = ""
+	var answerA = "4186"
 	var answerB = ""
-	
+
+	func solveA() -> String {
+		solveA("Input12").description
+	}
+
+	func solveB() -> String {
+//		solveB("Input12").description
+		""
+	}
+
 	class Node {
 		init(name: String) {
 			self.name = name
 		}
+
 		var name: String
 		var conections: [Node] = []
 
@@ -34,23 +44,19 @@ class Solve12: PuzzleSolver {
 			name.character(at: 0).isUppercase
 		}
 	}
-	
-	struct Nodes {
-		let nodes: [Node]
-		let start: Node
-		let end: Node
-	}
-	
+
+	typealias Nodes = [Node]
+
 	func load(_ fileName: String) -> Nodes {
 		let values = FileHelper.load(fileName)!.filter { !$0.isEmpty }
-		var rawNodes = [Node]()
-		
+		var nodes = [Node]()
+
 		func addNode(_ name: String) -> Node {
-			if let found = rawNodes.first(where: { name == $0.name }) {
+			if let found = nodes.first(where: { name == $0.name }) {
 				return found
 			}
 			let n = Node(name: name)
-			rawNodes.append(n )
+			nodes.append(n)
 			return n
 		}
 
@@ -61,27 +67,33 @@ class Solve12: PuzzleSolver {
 			n1.conections.append(n2)
 			n2.conections.append(n1)
 		}
-		
-		let nodes = Nodes(nodes: rawNodes,
-						  start: rawNodes.first(where:{$0.name == "start"})!,
-						  end: rawNodes.first(where:{$0.name == "end"})!)
-		
 		return nodes
 	}
 
-	func solveA() -> String {
-		""
-//		solveA("Input12").description
-	}
+	func traverse(_ nodes: Nodes, current: Node, path: [String]) -> [[String]] {
+		if current.name == "end" {
+			return [path]
+		}
 
-	func solveB() -> String {
-//		solveB("Input12").description
-		""
+		let currentPaths = current.conections.reduce([[String]]()) { paths, destination in
+			if !destination.big, path.contains(where: { destination.name == $0 }) {
+				return paths
+			}
+			var visited = Array(path)
+			visited.append(destination.name)
+			var newPaths = traverse(nodes, current: destination, path: visited)
+			newPaths.append(contentsOf: paths)
+			return newPaths
+		}
+		return currentPaths
 	}
 
 	func solveA(_ fileName: String) -> Int {
 		let nodes = load(fileName)
-		return 0
+		let path = ["start"]
+		let start = nodes.first(where: { $0.name == "start" })!
+		let paths = traverse(nodes, current: start, path: path)
+		return paths.count
 	}
 
 	func solveB(_: String) -> Int {
