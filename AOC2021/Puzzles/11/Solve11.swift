@@ -12,7 +12,7 @@ class Solve11: PuzzleSolver {
 	}
 
 	var answerA = "1608"
-	var answerB = ""
+	var answerB = "214"
 
 	func solveA() -> String {
 		solveA("Input11").description
@@ -25,17 +25,17 @@ class Solve11: PuzzleSolver {
 	func increment(_ grid: inout Grid2D) {
 		for x in 0 ..< grid.maxPos.x {
 			for y in 0 ..< grid.maxPos.y {
-				let pos = Position2D(x,y)
+				let pos = Position2D(x, y)
 				grid.setValue(pos, grid.value(pos) + 1)
 			}
 		}
 	}
-	
+
 	func flash(_ grid: inout Grid2D) -> Int {
 		var flashCount = 0
 		for x in 0 ..< grid.maxPos.x {
 			for y in 0 ..< grid.maxPos.y {
-				let pos = Position2D(x,y)
+				let pos = Position2D(x, y)
 				if grid.value(pos) > 9 {
 					flashCount += 1
 
@@ -45,7 +45,7 @@ class Solve11: PuzzleSolver {
 							grid.setValue($0, grid.value($0) + 1)
 						}
 					}
-					
+
 					grid.setValue(pos, 0)
 				}
 			}
@@ -57,7 +57,7 @@ class Solve11: PuzzleSolver {
 		var grid = Grid2D(fileName: fileName)
 
 		var flashCount = 0
-		for _ in 0..<100 {
+		for _ in 0 ..< 100 {
 			increment(&grid)
 
 			var didFlash = true
@@ -67,29 +67,28 @@ class Solve11: PuzzleSolver {
 				flashCount += thisCount
 			}
 		}
-		
+
 		return flashCount
 	}
 
 	func solveB(_ fileName: String) -> Int {
 		var grid = Grid2D(fileName: fileName)
-		
-		let maxSteps = 9999999
+
+		let maxSteps = 1000
 		let syncCount = grid.maxPos.x * grid.maxPos.y - 1
-		for i in 0..<maxSteps {
+		for i in 0 ..< maxSteps {
 			increment(&grid)
 
 			var didFlash = true
 			while didFlash {
 				let thisCount = flash(&grid)
-				if thisCount == syncCount {
-					// found it
-					return i
+				if grid.allSatisfy({ $0 == 0 }) || thisCount == syncCount {
+					return i + 1
 				}
 				didFlash = thisCount > 0
 			}
 		}
-		
+
 		return -666
 	}
 }

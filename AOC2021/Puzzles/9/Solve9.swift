@@ -30,7 +30,7 @@ class Solve9: PuzzleSolver {
 		return lowest == pos
 	}
 
-	func lowPoints(_ grid: Grid2D ) -> [Position2D] {
+	func lowPoints(_ grid: Grid2D) -> [Position2D] {
 		var lowest: [Position2D] = []
 		for x in 0 ..< grid.maxPos.x {
 			for y in 0 ..< grid.maxPos.y {

@@ -1,6 +1,6 @@
 
-import SwiftUI
 import AOCLib
+import SwiftUI
 
 struct Puzzle9View: View {
 	private var columns: [GridItem]
