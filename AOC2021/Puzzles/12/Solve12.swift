@@ -17,19 +17,29 @@ class Solve12: PuzzleSolver {
 	}
 
 	func solveBExamples() -> Bool {
-		true
+		if solveB("Example12-1") != 36 {
+			return false
+		}
+		if solveB("Example12-2") != 103 {
+			return false
+		}
+		if solveB("Example12-3") != 3509 {
+			return false
+		}
+		return true
 	}
 
 	var answerA = "4186"
-	var answerB = ""
+	var answerB = "92111"
 
+	var shouldTestB: Bool = false
+	
 	func solveA() -> String {
 		solveA("Input12").description
 	}
 
 	func solveB() -> String {
-//		solveB("Input12").description
-		""
+		solveB("Input12").description
 	}
 
 	class Node {
@@ -38,7 +48,7 @@ class Solve12: PuzzleSolver {
 		}
 
 		var name: String
-		var conections: [Node] = []
+		var connections: [Node] = []
 
 		var big: Bool {
 			name.character(at: 0).isUppercase
@@ -64,39 +74,59 @@ class Solve12: PuzzleSolver {
 			let tokens = line.components(separatedBy: "-")
 			let n1 = addNode(tokens[0])
 			let n2 = addNode(tokens[1])
-			n1.conections.append(n2)
-			n2.conections.append(n1)
+			n1.connections.append(n2)
+			n2.connections.append(n1)
 		}
 		return nodes
 	}
 
-	func traverse(_ nodes: Nodes, current: Node, path: [String]) -> [[String]] {
+	enum Options {
+		case singleSmall
+		case oneSmallRevisit(String?)
+	}
+	
+	func traverse(_ nodes: Nodes, _ options: Options, current: Node, path: [String]) -> [[String]] {
 		if current.name == "end" {
 			return [path]
 		}
+		let currentPaths = current.connections.reduce([[String]]()) { paths, destination in
+			var futureOptions = options
 
-		let currentPaths = current.conections.reduce([[String]]()) { paths, destination in
 			if !destination.big, path.contains(where: { destination.name == $0 }) {
-				return paths
+				switch options {
+				case .singleSmall:
+					return paths
+				case let .oneSmallRevisit(revisited):
+					if revisited != nil || destination.name == "start" {
+						return paths
+					}
+					futureOptions = .oneSmallRevisit(destination.name)
+				}
+				
 			}
 			var visited = Array(path)
 			visited.append(destination.name)
-			var newPaths = traverse(nodes, current: destination, path: visited)
+			var newPaths = traverse(nodes, futureOptions, current: destination, path: visited)
 			newPaths.append(contentsOf: paths)
 			return newPaths
 		}
 		return currentPaths
 	}
-
-	func solveA(_ fileName: String) -> Int {
+	
+	func traverse(_ fileName: String, _ options: Options) -> [[String]] {
 		let nodes = load(fileName)
 		let path = ["start"]
 		let start = nodes.first(where: { $0.name == "start" })!
-		let paths = traverse(nodes, current: start, path: path)
+		return traverse(nodes, options, current: start, path: path)
+	}
+
+	func solveA(_ fileName: String) -> Int {
+		let paths = traverse(fileName, .singleSmall)
 		return paths.count
 	}
 
-	func solveB(_: String) -> Int {
-		0
+	func solveB(_ fileName: String) -> Int {
+		let paths = traverse(fileName, .oneSmallRevisit(nil))
+		return paths.count
 	}
 }
