@@ -33,7 +33,7 @@ class Solve12: PuzzleSolver {
 	var answerB = "92111"
 
 	var shouldTestB: Bool = false
-	
+
 	func solveA() -> String {
 		solveA("Input12").description
 	}
@@ -84,12 +84,12 @@ class Solve12: PuzzleSolver {
 		case singleSmall
 		case oneSmallRevisit(String?)
 	}
-	
-	func traverse(_ nodes: Nodes, _ options: Options, current: Node, path: [String]) -> [[String]] {
+
+	func traverse(_ nodes: Nodes, _ options: Options, current: Node, path: [String]) -> Int {
 		if current.name == "end" {
-			return [path]
+			return 1
 		}
-		let currentPaths = current.connections.reduce([[String]]()) { paths, destination in
+		let currentPaths = current.connections.reduce(0) { paths, destination in
 			var futureOptions = options
 
 			if !destination.big, path.contains(where: { destination.name == $0 }) {
@@ -102,18 +102,15 @@ class Solve12: PuzzleSolver {
 					}
 					futureOptions = .oneSmallRevisit(destination.name)
 				}
-				
 			}
 			var visited = Array(path)
 			visited.append(destination.name)
-			var newPaths = traverse(nodes, futureOptions, current: destination, path: visited)
-			newPaths.append(contentsOf: paths)
-			return newPaths
+			return paths + traverse(nodes, futureOptions, current: destination, path: visited)
 		}
 		return currentPaths
 	}
-	
-	func traverse(_ fileName: String, _ options: Options) -> [[String]] {
+
+	func traverse(_ fileName: String, _ options: Options) -> Int {
 		let nodes = load(fileName)
 		let path = ["start"]
 		let start = nodes.first(where: { $0.name == "start" })!
@@ -121,12 +118,10 @@ class Solve12: PuzzleSolver {
 	}
 
 	func solveA(_ fileName: String) -> Int {
-		let paths = traverse(fileName, .singleSmall)
-		return paths.count
+		traverse(fileName, .singleSmall)
 	}
 
 	func solveB(_ fileName: String) -> Int {
-		let paths = traverse(fileName, .oneSmallRevisit(nil))
-		return paths.count
+		traverse(fileName, .oneSmallRevisit(nil))
 	}
 }
