@@ -22,6 +22,52 @@ class Solve12: PuzzleSolver {
 
 	var answerA = ""
 	var answerB = ""
+	
+	class Node {
+		init(name: String) {
+			self.name = name
+		}
+		var name: String
+		var conections: [Node] = []
+
+		var big: Bool {
+			name.character(at: 0).isUppercase
+		}
+	}
+	
+	struct Nodes {
+		let nodes: [Node]
+		let start: Node
+		let end: Node
+	}
+	
+	func load(_ fileName: String) -> Nodes {
+		let values = FileHelper.load(fileName)!.filter { !$0.isEmpty }
+		var rawNodes = [Node]()
+		
+		func addNode(_ name: String) -> Node {
+			if let found = rawNodes.first(where: { name == $0.name }) {
+				return found
+			}
+			let n = Node(name: name)
+			rawNodes.append(n )
+			return n
+		}
+
+		values.forEach { line in
+			let tokens = line.components(separatedBy: "-")
+			let n1 = addNode(tokens[0])
+			let n2 = addNode(tokens[1])
+			n1.conections.append(n2)
+			n2.conections.append(n1)
+		}
+		
+		let nodes = Nodes(nodes: rawNodes,
+						  start: rawNodes.first(where:{$0.name == "start"})!,
+						  end: rawNodes.first(where:{$0.name == "end"})!)
+		
+		return nodes
+	}
 
 	func solveA() -> String {
 		""
@@ -34,7 +80,7 @@ class Solve12: PuzzleSolver {
 	}
 
 	func solveA(_ fileName: String) -> Int {
-		let values = FileHelper.load(fileName)!.filter { !$0.isEmpty }
+		let nodes = load(fileName)
 		return 0
 	}
 
