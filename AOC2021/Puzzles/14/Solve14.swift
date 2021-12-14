@@ -15,7 +15,7 @@ class Solve14: PuzzleSolver {
 		return true
 	}
 
-	var answerA = ""
+	var answerA = "2509"
 	var answerB = ""
 	
 	func solveA() -> String {
@@ -42,10 +42,34 @@ class Solve14: PuzzleSolver {
 		}
 		return .init(template: values[0], rules: rules)
 	}
+	
+	func transform(_ s: String, _ rules: Dictionary<String, String>) -> String {
+		var out = ""
+		for i in 0..<s.count-1 {
+			out += String(s.character(at: i))
+			out += rules[s.subString(start: i, count: 2)]!
+		}
+		out += String(s.character(at: s.count-1))
+		return out
+	}
 
 	func solveA(_ fileName: String) -> Int {
 		let input = load(fileName)
-		return 0
+		var output = input.template
+		for _ in 0..<10 {
+			output = transform(output, input.rules)
+		}
+		// find the counts.
+		var found = Dictionary<Character, Int>()
+		for c in Set(output) {
+			found[c] = 0
+		}
+		for c in output {
+			found[c]! += 1
+		}
+		let minVal = found.min { $0.value < $1.value }
+		let maxVal = found.max { $0.value < $1.value }
+		return maxVal!.value - minVal!.value
 	}
 
 	func solveB(_ fileName: String) -> Int {
