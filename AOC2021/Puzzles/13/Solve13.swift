@@ -14,7 +14,7 @@ class Solve13: PuzzleSolver {
 		return true
 	}
 
-	var answerA = ""
+	var answerA = "814"
 	var answerB = ""
 	
 	func solveA() -> String {
@@ -27,7 +27,7 @@ class Solve13: PuzzleSolver {
 	
 	struct Instruction {
 		var isX: Bool
-		var line: Int
+		var index: Int
 	}
 	
 	struct Input {
@@ -49,17 +49,37 @@ class Solve13: PuzzleSolver {
 		var instructions: [Instruction] = []
 		while index < values.count && !values[index].isEmpty {
 			let tokens = values[index].components(separatedBy: " ")[2].components(separatedBy: "=")
-			instructions.append(.init(isX: tokens[0] == "x", line: Int(tokens[1])!))
+			instructions.append(.init(isX: tokens[0] == "x", index: Int(tokens[1])!))
 			index += 1
 		}
 		
 		return .init(instructions: instructions, dots: dots)
 	}
+	
+	func fold(_ how: Instruction, _ dots: [Position2D]) -> [Position2D] {
+		let folded: [Position2D] = dots.map { dot in
+			if how.isX {
+				if dot.x > how.index {
+					return .init(how.index - (dot.x - how.index), dot.y)
+				} else {
+					return dot
+				}
+			} else {
+				if dot.y > how.index {
+					return .init(dot.x, how.index - (dot.y - how.index))
+				} else {
+					return dot
+				}
+			}
+		}
+		return Array(Set(folded))
+	}
 
 	func solveA(_ fileName: String) -> Int {
 		let input = load(fileName)
 		
-		return 0
+		let folded = fold(input.instructions[0], input.dots)
+		return folded.count
 	}
 
 	func solveB(_ fileName: String) -> Int {
