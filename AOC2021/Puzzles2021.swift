@@ -20,6 +20,7 @@ class Puzzles2021: PuzzlesRepo {
 			Puzzle(year: year, id: 11, name: "Dumbo Octopus") { Solve11() },
 			Puzzle(year: year, id: 12, name: "Passage Pathing") { Solve12() },
 			Puzzle(year: year, id: 13, name: "Transparent Origami") { Solve13() },
+			Puzzle(year: year, id: 14, name: "Extended Polymerization") { Solve14() },
 		])
 	}
 
