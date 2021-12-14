@@ -17,29 +17,29 @@ class Solve13: PuzzleSolver {
 
 	var answerA = "814"
 	var answerB = "PZEHRAER"
-	
+
 	func solveA() -> String {
 		solveA("Input13").description
 	}
 
 	func solveB() -> String {
 		solveB("Input13")
-/*
+		/*
 		 ###  #### #### #  # ###   ##  #### ###
 		 #  #    # #    #  # #  # #  # #    #  #
 		 #  #   #  ###  #### #  # #  # ###  #  #
 		 ###   #   #    #  # ###  #### #    ###
 		 #    #    #    #  # # #  #  # #    # #
 		 #    #### #### #  # #  # #  # #### #  #
-*/
+		 */
 		return "PZEHRAER"
 	}
-	
+
 	struct Instruction {
 		var isX: Bool
 		var index: Int
 	}
-	
+
 	struct Input {
 		var instructions: [Instruction]
 		var dots: [Position2D]
@@ -57,15 +57,15 @@ class Solve13: PuzzleSolver {
 		index += 1
 
 		var instructions: [Instruction] = []
-		while index < values.count && !values[index].isEmpty {
+		while index < values.count, !values[index].isEmpty {
 			let tokens = values[index].components(separatedBy: " ")[2].components(separatedBy: "=")
 			instructions.append(.init(isX: tokens[0] == "x", index: Int(tokens[1])!))
 			index += 1
 		}
-		
+
 		return .init(instructions: instructions, dots: dots)
 	}
-	
+
 	func fold(_ how: Instruction, _ dots: [Position2D]) -> [Position2D] {
 		let folded: [Position2D] = dots.map { dot in
 			if how.isX {
