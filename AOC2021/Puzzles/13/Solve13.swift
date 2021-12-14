@@ -11,18 +11,28 @@ class Solve13: PuzzleSolver {
 	}
 
 	func solveBExamples() -> Bool {
+		solveB("Example13")
 		return true
 	}
 
 	var answerA = "814"
-	var answerB = ""
+	var answerB = "PZEHRAER"
 	
 	func solveA() -> String {
 		solveA("Input13").description
 	}
 
 	func solveB() -> String {
-		""
+		solveB("Input13")
+/*
+		 ###  #### #### #  # ###   ##  #### ###
+		 #  #    # #    #  # #  # #  # #    #  #
+		 #  #   #  ###  #### #  # #  # ###  #  #
+		 ###   #   #    #  # ###  #### #    ###
+		 #    #    #    #  # # #  #  # #    # #
+		 #    #### #### #  # #  # #  # #### #  #
+*/
+		return "PZEHRAER"
 	}
 	
 	struct Instruction {
@@ -77,12 +87,17 @@ class Solve13: PuzzleSolver {
 
 	func solveA(_ fileName: String) -> Int {
 		let input = load(fileName)
-		
 		let folded = fold(input.instructions[0], input.dots)
 		return folded.count
 	}
 
-	func solveB(_ fileName: String) -> Int {
-		0
+	func solveB(_ fileName: String) {
+		let input = load(fileName)
+		var dots = input.dots
+		for inst in input.instructions {
+			dots = fold(inst, dots)
+		}
+		let grid = Grid2D(positions: dots, value: 1)
+		print(grid.debugDisplay { $0 > 0 ? "#" : " " })
 	}
 }
