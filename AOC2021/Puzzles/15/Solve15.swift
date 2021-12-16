@@ -11,7 +11,7 @@ class Solve15: PuzzleSolver {
 		true
 	}
 
-	var answerA = ""
+	var answerA = "698"
 	var answerB = ""
 
 	func solveA() -> String {
@@ -21,10 +21,30 @@ class Solve15: PuzzleSolver {
 	func solveB() -> String {
 		""
 	}
+	
+	func walk(risks: Grid2D) -> Int {
+		let start = Position2D(0,0)
+		var lowestCosts = Grid2D(maxPos: risks.maxPos, initialValue: Int.max)
+		var toWalk = Queue<Position2D>()
+		toWalk.enqueue(start)
+		lowestCosts.setValue(start, 0)
+		
+		while let nextPos = toWalk.dequeue() {
+			risks.neighbors(nextPos, includePos: false, includeDiagonals: false).forEach {
+				let walkCost = lowestCosts.value(nextPos) + risks.value($0)
+				if lowestCosts.value($0) > walkCost {
+					lowestCosts.setValue($0, walkCost)
+					toWalk.enqueue($0)
+				}
+			}
+		}
+		return lowestCosts.value(.init(risks.maxPos.x-1, risks.maxPos.y-1))
+	}
 
 	func solveA(_ fileName: String) -> Int {
-		var grid = Grid2D(fileName: fileName)
-		return 0
+		let risks = Grid2D(fileName: fileName)
+		let cost = walk(risks: risks)
+		return cost
 	}
 
 	func solveB(_ fileName: String) -> Int {
