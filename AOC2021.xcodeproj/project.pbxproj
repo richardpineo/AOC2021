@@ -84,6 +84,12 @@
 		BFC68CBB2765629D004FC9CF /* Example11.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFC68CB62765629D004FC9CF /* Example11.txt */; };
 		BFC68CBC2765629D004FC9CF /* Input11.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFC68CB72765629D004FC9CF /* Input11.txt */; };
 		BFC68CBD2765629D004FC9CF /* Input11.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFC68CB72765629D004FC9CF /* Input11.txt */; };
+		BFDDE9EE276AF33600AD1478 /* Solve15.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE9EB276AF33600AD1478 /* Solve15.swift */; };
+		BFDDE9EF276AF33600AD1478 /* Solve15.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE9EB276AF33600AD1478 /* Solve15.swift */; };
+		BFDDE9F0276AF33600AD1478 /* Example15.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFDDE9EC276AF33600AD1478 /* Example15.txt */; };
+		BFDDE9F1276AF33600AD1478 /* Example15.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFDDE9EC276AF33600AD1478 /* Example15.txt */; };
+		BFDDE9F2276AF33600AD1478 /* Input15.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFDDE9ED276AF33600AD1478 /* Input15.txt */; };
+		BFDDE9F3276AF33600AD1478 /* Input15.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFDDE9ED276AF33600AD1478 /* Input15.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +156,9 @@
 		BFC68CB52765629D004FC9CF /* Solve11.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solve11.swift; sourceTree = "<group>"; };
 		BFC68CB62765629D004FC9CF /* Example11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Example11.txt; sourceTree = "<group>"; };
 		BFC68CB72765629D004FC9CF /* Input11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Input11.txt; sourceTree = "<group>"; };
+		BFDDE9EB276AF33600AD1478 /* Solve15.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solve15.swift; sourceTree = "<group>"; };
+		BFDDE9EC276AF33600AD1478 /* Example15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Example15.txt; sourceTree = "<group>"; };
+		BFDDE9ED276AF33600AD1478 /* Input15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Input15.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +268,7 @@
 		BF30E9EC275734D800AEC5D7 /* Puzzles */ = {
 			isa = PBXGroup;
 			children = (
+				BFDDE9EA276AF33600AD1478 /* 15 */,
 				BF738F8B27685CED0046C4F5 /* 14 */,
 				BF738F81276852480046C4F5 /* 13 */,
 				BFABA7F52765B9DE00E5F23D /* 12 */,
@@ -390,6 +400,16 @@
 			path = 11;
 			sourceTree = "<group>";
 		};
+		BFDDE9EA276AF33600AD1478 /* 15 */ = {
+			isa = PBXGroup;
+			children = (
+				BFDDE9EB276AF33600AD1478 /* Solve15.swift */,
+				BFDDE9EC276AF33600AD1478 /* Example15.txt */,
+				BFDDE9ED276AF33600AD1478 /* Input15.txt */,
+			);
+			path = 15;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -488,6 +508,7 @@
 				BF30E9F0275734E800AEC5D7 /* Input1.txt in Resources */,
 				BF1622B1276075B600FFFDEE /* Example8.txt in Resources */,
 				BF1622A3276066D400FFFDEE /* Example7.txt in Resources */,
+				BFDDE9F2276AF33600AD1478 /* Input15.txt in Resources */,
 				BFC68CAE27643C45004FC9CF /* Input10.txt in Resources */,
 				BF6BF5A12761D84A00246D6E /* Input9.txt in Resources */,
 				BF30E9BD2757333000AEC5D7 /* Assets.xcassets in Resources */,
@@ -509,6 +530,7 @@
 				BF738F89276852480046C4F5 /* Input13.txt in Resources */,
 				BFABA7FB2765B9DE00E5F23D /* Input12.txt in Resources */,
 				BF1622A4276066D400FFFDEE /* Input7.txt in Resources */,
+				BFDDE9F0276AF33600AD1478 /* Example15.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +541,7 @@
 				BF6BF5A22761D84A00246D6E /* Input9.txt in Resources */,
 				BF738F86276852480046C4F5 /* Example13.txt in Resources */,
 				BF6BF5A42761D84A00246D6E /* Example9.txt in Resources */,
+				BFDDE9F3276AF33600AD1478 /* Input15.txt in Resources */,
 				BFC68CAF27643C45004FC9CF /* Input10.txt in Resources */,
 				BFC68CBD2765629D004FC9CF /* Input11.txt in Resources */,
 				BF738F8A276852480046C4F5 /* Input13.txt in Resources */,
@@ -526,6 +549,7 @@
 				BFC68CAB27643C45004FC9CF /* Example10.txt in Resources */,
 				BFC68CBB2765629D004FC9CF /* Example11.txt in Resources */,
 				BF738F9027685CED0046C4F5 /* Example14.txt in Resources */,
+				BFDDE9F1276AF33600AD1478 /* Example15.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +575,7 @@
 				BF30E9B92757332C00AEC5D7 /* AOC2021App.swift in Sources */,
 				BFACA91A27589F3F00C3C810 /* Solve2.swift in Sources */,
 				BF03AD53275DD0D700B7657C /* Solve6.swift in Sources */,
+				BFDDE9EE276AF33600AD1478 /* Solve15.swift in Sources */,
 				BF30E9F1275734E800AEC5D7 /* Solve1.swift in Sources */,
 				BF6BF59F2761D84A00246D6E /* Solve9.swift in Sources */,
 			);
@@ -575,6 +600,7 @@
 				BF30E9CA2757333000AEC5D7 /* AOC2021Tests.swift in Sources */,
 				BFACA91D2758A0E900C3C810 /* Solve2.swift in Sources */,
 				BF03AD54275DD0DB00B7657C /* Solve6.swift in Sources */,
+				BFDDE9EF276AF33600AD1478 /* Solve15.swift in Sources */,
 				BF30E9F22757352200AEC5D7 /* Solve1.swift in Sources */,
 				BF6BF5A02761D84A00246D6E /* Solve9.swift in Sources */,
 			);
