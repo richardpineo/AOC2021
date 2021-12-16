@@ -8,18 +8,20 @@ class Solve15: PuzzleSolver {
 	}
 
 	func solveBExamples() -> Bool {
-		true
+		solveB("Example15") == 315
 	}
 
 	var answerA = "698"
-	var answerB = ""
+	var answerB = "3022"
 
+	var shouldTestB: Bool = false
+	
 	func solveA() -> String {
 		solveA("Input15").description
 	}
 
 	func solveB() -> String {
-		""
+		solveB("Input15").description
 	}
 	
 	func walk(risks: Grid2D) -> Int {
@@ -48,6 +50,23 @@ class Solve15: PuzzleSolver {
 	}
 
 	func solveB(_ fileName: String) -> Int {
-		0
+		let risks = Grid2D(fileName: fileName)
+		var megaRisks = Grid2D(maxPos: .init(risks.maxPos.x*5, risks.maxPos.y*5), initialValue: -1)
+		for x in 0..<risks.maxPos.x {
+			for y in 0..<risks.maxPos.y {
+				for mx in 0..<5 {
+					for my in 0..<5 {
+						let val = risks.value(.init(x,y))
+						var megaVal = val + mx + my
+						if megaVal > 9 {
+							megaVal -= 9
+						}
+						megaRisks.setValue(.init(x + (mx * risks.maxPos.x), y + (my * risks.maxPos.y)), megaVal)
+					}
+				}
+			}
+		}
+		let cost = walk(risks: megaRisks)
+		return cost
 	}
 }
