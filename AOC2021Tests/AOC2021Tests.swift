@@ -5,7 +5,7 @@ import XCTest
 
 class Test2021: XCTestCase {
 	func testOne() throws {
-		testOne(Solve15())
+		testOne(Solve16())
 	}
 
 	func testAll() throws {

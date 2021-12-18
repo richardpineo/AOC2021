@@ -20,7 +20,7 @@ class Solve16: PuzzleSolver {
 	}
 
 	var answerA = "991"
-	var answerB = ""
+	var answerB = "1264485568252"
 
 	func solveA() -> String {
 		let input = FileHelper.load("Input16")![0]
@@ -67,11 +67,41 @@ class Solve16: PuzzleSolver {
 		var operatorType: Int
 		var lengthType: LengthType
 		var packets: [Packet]
+		
+		var evaluate: Int {
+			switch operatorType {
+			case 0:
+				return packets.reduce(0) { $0 + $1.contents.evaluate }
+			case 1:
+				return packets.reduce(1) { $0 * $1.contents.evaluate }
+			case 2:
+				return packets.min { $0.contents.evaluate < $1.contents.evaluate }!.contents.evaluate
+			case 3:
+				return packets.max { $0.contents.evaluate < $1.contents.evaluate }!.contents.evaluate
+			case 5:
+				return packets[0].contents.evaluate > packets[1].contents.evaluate ? 1 : 0
+			case 6:
+				return packets[0].contents.evaluate < packets[1].contents.evaluate ? 1 : 0
+			case 7:
+				return packets[0].contents.evaluate == packets[1].contents.evaluate ? 1 : 0
+			default:
+				return -666
+			}
+		}
 	}
 
 	enum PacketContents {
 		case literal(Int)
 		case oper(PacketOperator)
+		
+		var evaluate: Int {
+			switch self {
+			case let .literal(v):
+				return v
+			case let .oper(o):
+				return o.evaluate
+			}
+		}
 	}
 
 	struct Packet {
@@ -154,7 +184,10 @@ class Solve16: PuzzleSolver {
 		return sumVersions(p)
 	}
 
-	func solveB(_: String) -> Int {
-		0
+	func solveB(_ input: String) -> Int {
+		let bin = input.hexToBinary()
+		var pos = 0
+		let p = readPacket(&pos, stream: bin)
+		return p.contents.evaluate
 	}
 }
