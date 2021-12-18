@@ -14,8 +14,6 @@ class Solve18: PuzzleSolver {
 	var answerA = "0"
 	var answerB = ""
 
-	var shouldTestB: Bool = false
-
 	func solveA() -> String {
 		solveA("Input18").description
 	}

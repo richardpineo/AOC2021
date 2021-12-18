@@ -30,7 +30,7 @@ struct Puzzle9View: View {
 		if val == 0 {
 			return .black
 		}
-		return .init(red: 165.0 / 255.0, green: 42 / 255.0, blue: 42 / 255.0, alpha: 1.0 - CGFloat(val) * 0.1)
+		return .init(red: 82.0 / 255.0, green: 82.0 / 255.0, blue: 82.0 / 255.0, alpha: 1.0 - CGFloat(val) * 0.1)
 	}
 }
 
