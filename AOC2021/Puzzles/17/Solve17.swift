@@ -2,9 +2,9 @@
 import AOCLib
 import Foundation
 
-class Solve17: PuzzleSolver {
+class Solve17 : PuzzleSolver {
 	func solveAExamples() -> Bool {
-//		solveA("Example17") == 0
+		solveA("Example17") == 45
 	}
 
 	func solveBExamples() -> Bool {
@@ -21,7 +21,7 @@ class Solve17: PuzzleSolver {
 	}
 
 	func solveB() -> String {
-//		"" // solveB("Input17").description
+		"" // solveB("Input17").description
 	}
 
 	func solveA(_ fileName: String) -> Int {

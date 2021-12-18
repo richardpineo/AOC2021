@@ -22,6 +22,9 @@ class Puzzles2021: PuzzlesRepo {
 			Puzzle(year: year, id: 13, name: "Transparent Origami") { Solve13() },
 			Puzzle(year: year, id: 14, name: "Extended Polymerization") { Solve14() },
 			Puzzle(year: year, id: 15, name: "Chiton") { Solve15() },
+			Puzzle(year: year, id: 16, name: "Packet Decoder") { Solve16() },
+			Puzzle(year: year, id: 17, name: "Trick Shot") { Solve17() },
+			Puzzle(year: year, id: 18, name: "Snailfish") { Solve18() },
 		])
 	}
 
