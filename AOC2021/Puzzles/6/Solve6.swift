@@ -42,9 +42,9 @@ class Solve6: PuzzleSolver {
 			ages[$0] = ages[$0] + 1
 		}
 
-		for r in 0 ..< rounds {
+		for _ in 0 ..< rounds {
 			ages = evolve(ages)
-			print("Round \(r): \(ages.reduce(0) { $0 + $1 })")
+			// print("Round \(r): \(ages.reduce(0) { $0 + $1 })")
 		}
 
 		return ages.reduce(0) { $0 + $1 }

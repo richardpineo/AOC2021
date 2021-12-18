@@ -11,7 +11,7 @@ class Solve18: PuzzleSolver {
 		true
 	}
 
-	var answerA = ""
+	var answerA = "0"
 	var answerB = ""
 
 	var shouldTestB: Bool = false
@@ -21,14 +21,14 @@ class Solve18: PuzzleSolver {
 	}
 
 	func solveB() -> String {
-//		"" // solveB("Input17").description
+		"" // solveB("Input17").description
 	}
 
-	func solveA(_ fileName: String) -> Int {
+	func solveA(_: String) -> Int {
 		0
 	}
 
-	func solveB(_ fileName: String) -> Int {
+	func solveB(_: String) -> Int {
 		0
 	}
 }

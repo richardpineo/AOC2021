@@ -2,16 +2,16 @@
 import AOCLib
 import Foundation
 
-class Solve17 : PuzzleSolver {
+class Solve17: PuzzleSolver {
 	func solveAExamples() -> Bool {
-		solveA("Example17") == 45
+		solveA("Example17") == 0
 	}
 
 	func solveBExamples() -> Bool {
 		true
 	}
 
-	var answerA = ""
+	var answerA = "0"
 	var answerB = ""
 
 	var shouldTestB: Bool = false
@@ -24,11 +24,11 @@ class Solve17 : PuzzleSolver {
 		"" // solveB("Input17").description
 	}
 
-	func solveA(_ fileName: String) -> Int {
+	func solveA(_: String) -> Int {
 		0
 	}
 
-	func solveB(_ fileName: String) -> Int {
+	func solveB(_: String) -> Int {
 		0
 	}
 }
