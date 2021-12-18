@@ -4,18 +4,22 @@ import Foundation
 
 class Solve16: PuzzleSolver {
 	func solveAExamples() -> Bool {
-		examples.allSatisfy {
+		examplesA.allSatisfy {
 			let answer = solveA($0.input)
-			print("\($0.input): \(answer)")
-			return answer == $0.versionSum
+			// print("A: \($0.input): \(answer)")
+			return answer == $0.answer
 		}
 	}
 
 	func solveBExamples() -> Bool {
-		true
+		examplesB.allSatisfy {
+			let answer = solveB($0.input)
+			print("B: \($0.input): \(answer)")
+			return answer == $0.answer
+		}
 	}
 
-	var answerA = "0"
+	var answerA = "991"
 	var answerB = ""
 
 	func solveA() -> String {
@@ -24,24 +28,36 @@ class Solve16: PuzzleSolver {
 	}
 
 	func solveB() -> String {
-		""
+		let input = FileHelper.load("Input16")![0]
+		return solveB(input).description
 	}
 
 	struct Example {
 		var input: String
-		var versionSum: Int
+		var answer: Int
 	}
 
-	let examples: [Example] = [
-		.init(input: "D2FE28", versionSum: 6),
-		.init(input: "38006F45291200", versionSum: 9),
-		.init(input: "EE00D40C823060", versionSum: 14),
-		.init(input: "8A004A801A8002F478", versionSum: 16),
-		.init(input: "620080001611562C8802118E34", versionSum: 12),
-		.init(input: "C0015000016115A2E0802F182340", versionSum: 23),
-		.init(input: "A0016C880162017C3686B18A3D4780", versionSum: 31),
+	let examplesA: [Example] = [
+		.init(input: "D2FE28", answer: 6),
+		.init(input: "38006F45291200", answer: 9),
+		.init(input: "EE00D40C823060", answer: 14),
+		.init(input: "8A004A801A8002F478", answer: 16),
+		.init(input: "620080001611562C8802118E34", answer: 12),
+		.init(input: "C0015000016115A2E0802F182340", answer: 23),
+		.init(input: "A0016C880162017C3686B18A3D4780", answer: 31),
 	]
 
+	let examplesB: [Example] = [
+		.init(input: "C200B40A82", answer: 3),
+		.init(input: "04005AC33890", answer: 54),
+		.init(input: "880086C3E88112", answer: 7),
+		.init(input: "CE00C43D881120", answer: 9),
+		.init(input: "D8005AC2A8F0", answer: 1),
+		.init(input: "F600BC2D8F", answer: 0),
+		.init(input: "9C005AC2F8F0", answer: 0),
+		.init(input: "9C0141080250320F1802104A08", answer: 1),
+	]
+	
 	enum LengthType {
 		case totalLength(Int)
 		case subPackets(Int)
