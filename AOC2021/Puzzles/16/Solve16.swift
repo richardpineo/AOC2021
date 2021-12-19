@@ -57,7 +57,7 @@ class Solve16: PuzzleSolver {
 		.init(input: "9C005AC2F8F0", answer: 0),
 		.init(input: "9C0141080250320F1802104A08", answer: 1),
 	]
-	
+
 	enum LengthType {
 		case totalLength(Int)
 		case subPackets(Int)
@@ -67,7 +67,7 @@ class Solve16: PuzzleSolver {
 		var operatorType: Int
 		var lengthType: LengthType
 		var packets: [Packet]
-		
+
 		var evaluate: Int {
 			switch operatorType {
 			case 0:
@@ -93,7 +93,7 @@ class Solve16: PuzzleSolver {
 	enum PacketContents {
 		case literal(Int)
 		case oper(PacketOperator)
-		
+
 		var evaluate: Int {
 			switch self {
 			case let .literal(v):
