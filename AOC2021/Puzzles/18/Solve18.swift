@@ -4,9 +4,12 @@ import Foundation
 
 class Solve18: PuzzleSolver {
 	func solveAExamples() -> Bool {
-		Self.loadTests.forEach {
-			let p = load($0)
-			print(p)
+		let loaded = Self.loadTests.allSatisfy {
+			// print("\($0) -> \(p.debugDescription)")
+			return load($0).description == $0
+		}
+		if !loaded {
+			return false
 		}
 
 		if add(Self.addTest.input) != Self.addTest.output {
@@ -47,28 +50,53 @@ class Solve18: PuzzleSolver {
 	indirect enum Element {
 		case number(Int)
 		case pair(Pair)
+		
+		var debugDescription: String {
+			switch self {
+			case let .number(n):
+				return String(n)
+			case let .pair(p):
+				return p.description
+			}
+		}
 	}
 
 	struct Pair {
 		var first: Element
 		var second: Element
+		
+		var description: String {
+			return String("[\(first.debugDescription),\(second.debugDescription)]")
+		}
 	}
 
-	/*
-	 func load(_ s: String, pos: inout Int) -> Element {
-	 	switch s.character(at: pos) {
-	 		case "[":
-	 			pos += 1
-	 			return load(s, pos: &pos)
-	 		case "]"
-	 			// start a new pair
-	 		}
+	func load(_ s: String, pos: inout Int) -> Element {
+		switch s.character(at: pos) {
+		case "[":
+			pos += 1
+			let first = load(s, pos: &pos)
+			pos += 1
+			let second = load(s, pos: &pos)
+			pos += 1
+			return .pair(.init(first: first, second: second))
+			
+		case "0" ... "9":
+			let val = Int(String(s.character(at: pos)))!
+			pos += 1
+			return .number(val)
 
-	 	}
-	 }
-	  */
-	func load(_: String) -> Pair {
-		.init(first: .number(0), second: .number(1))
+		default:
+			break
+		}
+		return .number(-666)
+	}
+
+	func load(_ s: String) -> Pair {
+		var pos = 0
+		if case let .pair(p) = load(s, pos: &pos) {
+			return p
+		}
+		return .init(first: .number(-666), second: .number(-666))
 	}
 
 	func add(_: String) -> String {
