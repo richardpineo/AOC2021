@@ -16,10 +16,18 @@ class Solve18: PuzzleSolver {
 		let exploded = Self.explodeTests.allSatisfy {
 			let n = load($0.input)
 			let e = explode(n)!
-			print("\($0.input) -> \(e.description) : \($0.output)")
+			// print("\($0.input) -> \(e.description) : \($0.output)")
 			return e.description == $0.output
 		}
 		if !exploded {
+			return false
+		}
+		
+		var node10 = Node(contents: .number(10), parent: nil)
+		var node11 = Node(contents: .number(11), parent: nil)
+		split(&node10)
+		split(&node11)
+		if node11.description != "[5,6]" || node10.description != "[5,5]" {
 			return false
 		}
 
@@ -196,16 +204,36 @@ class Solve18: PuzzleSolver {
 			rightNode.contents = .number(curRightVal + rightVal)
 		}
 		
-		let parent = deep.parent!
+		replace(existing: deep, with: Node(contents: .number(0), parent: nil) )
+		return n
+	}
+	
+	func replace(existing: Node, with: Node) {
+		guard let parent = existing.parent else {
+			return
+		}
+		with.parent = parent
 		if case let .pair(n1, n2) = parent.contents {
-			let newNode = Node(contents: .number(0), parent: parent)
-			if ObjectIdentifier(n1) == ObjectIdentifier(deep) {
-				parent.contents = .pair(newNode, n2)
+			if ObjectIdentifier(n1) == ObjectIdentifier(existing) {
+				parent.contents = .pair(with, n2)
 			} else {
-				parent.contents = .pair(n1, newNode)
+				parent.contents = .pair(n1, with)
 			}
 		}
-		return parent.root
+	}
+	
+	func split(_ e: inout Node) {
+		guard case let .number(n) = e.contents else {
+			return
+		}
+		let newNode = Node(contents: nil, parent: nil)
+		let leftVal = Int(floor(Double(n) / 2.0))
+		let rightVal = Int(ceil(Double(n) / 2.0))
+		let left = Node(contents: .number(leftVal), parent: newNode)
+		let right = Node(contents: .number(rightVal), parent: newNode)
+		e.contents = .pair(left, right)
+						 
+		replace(existing: e, with: newNode)
 	}
 	
 	func add(_ e1: inout Node, _ e2: inout Node) -> Node {
