@@ -17,8 +17,6 @@ extension Solve18 {
 		var output: String
 	}
 
-	static let addTest = Test(input: "[1,2] + [[3,4],5]", output: "[[1,2],[[3,4],5]]")
-
 	static let explodeTests = [
 		Test(input: "[[[[[9,8],1],2],3],4]", output: "[[[[0,9],2],3],4]"),
 		Test(input: "[7,[6,[5,[4,[3,2]]]]]", output: "[7,[6,[5,[7,0]]]]"),

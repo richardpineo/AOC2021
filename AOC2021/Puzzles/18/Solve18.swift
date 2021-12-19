@@ -5,14 +5,11 @@ import Foundation
 class Solve18: PuzzleSolver {
 	func solveAExamples() -> Bool {
 		let loaded = Self.loadTests.allSatisfy {
-			// print("\($0) -> \(p.debugDescription)")
-			return load($0).description == $0
+			let tree = load($0)
+			print("\($0) -> \(tree.description)")
+			return tree.description == $0
 		}
 		if !loaded {
-			return false
-		}
-
-		if add(Self.addTest.input) != Self.addTest.output {
 			return false
 		}
 
@@ -35,7 +32,7 @@ class Solve18: PuzzleSolver {
 		true
 	}
 
-	var answerA = "0"
+	var answerA = ""
 	var answerB = ""
 
 	func solveA() -> String {
@@ -46,11 +43,15 @@ class Solve18: PuzzleSolver {
 	func solveB() -> String {
 		""
 	}
+	
+	typealias SnailTree = BinaryTree<Int>
 
+
+	/*
 	indirect enum Element {
 		case number(Int)
 		case pair(Pair)
-		
+
 		var debugDescription: String {
 			switch self {
 			case let .number(n):
@@ -60,17 +61,28 @@ class Solve18: PuzzleSolver {
 			}
 		}
 	}
+	 */
 
+	func add(_ e1: SnailTree, _ e2: SnailTree) -> SnailTree {
+		.node(e1, 0, e2)
+	}
+
+	func explode(e _: SnailTree) -> Bool{
+		// Find the first one at depth 4
+		return false
+	}
+/*
 	struct Pair {
 		var first: Element
 		var second: Element
-		
+
 		var description: String {
-			return String("[\(first.debugDescription),\(second.debugDescription)]")
+			String("[\(first.debugDescription),\(second.debugDescription)]")
 		}
 	}
+ */
 
-	func load(_ s: String, pos: inout Int) -> Element {
+	func load(_ s: String, pos: inout Int) -> SnailTree {
 		switch s.character(at: pos) {
 		case "[":
 			pos += 1
@@ -78,28 +90,21 @@ class Solve18: PuzzleSolver {
 			pos += 1
 			let second = load(s, pos: &pos)
 			pos += 1
-			return .pair(.init(first: first, second: second))
-			
+			return .node(first, 0, second)
+
 		case "0" ... "9":
 			let val = Int(String(s.character(at: pos)))!
 			pos += 1
-			return .number(val)
+			return .node(.empty, val, .empty)
 
 		default:
 			break
 		}
-		return .number(-666)
+		return .empty
 	}
 
-	func load(_ s: String) -> Pair {
+	func load(_ s: String) -> SnailTree {
 		var pos = 0
-		if case let .pair(p) = load(s, pos: &pos) {
-			return p
-		}
-		return .init(first: .number(-666), second: .number(-666))
-	}
-
-	func add(_: String) -> String {
-		""
+		return load(s, pos: &pos)
 	}
 }
