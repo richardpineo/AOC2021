@@ -4,7 +4,28 @@ import Foundation
 
 class Solve18: PuzzleSolver {
 	func solveAExamples() -> Bool {
-		solveA("Example18") == 0
+		Self.loadTests.forEach {
+			let p = load($0)
+			print(p)
+		}
+
+		if add(Self.addTest.input) != Self.addTest.output {
+			return false
+		}
+
+		/*
+		 explodeTests
+
+		 reduceTests
+
+		 sumTests
+
+		 magnitudeTests
+
+		 bigFinal
+		  */
+
+		return true
 	}
 
 	func solveBExamples() -> Bool {
@@ -15,18 +36,42 @@ class Solve18: PuzzleSolver {
 	var answerB = ""
 
 	func solveA() -> String {
-		solveA("Input18").description
+		// puzzleInput
+		""
 	}
 
 	func solveB() -> String {
-		"" // solveB("Input17").description
+		""
 	}
 
-	func solveA(_: String) -> Int {
-		0
+	indirect enum Element {
+		case number(Int)
+		case pair(Pair)
 	}
 
-	func solveB(_: String) -> Int {
-		0
+	struct Pair {
+		var first: Element
+		var second: Element
+	}
+
+	/*
+	 func load(_ s: String, pos: inout Int) -> Element {
+	 	switch s.character(at: pos) {
+	 		case "[":
+	 			pos += 1
+	 			return load(s, pos: &pos)
+	 		case "]"
+	 			// start a new pair
+	 		}
+
+	 	}
+	 }
+	  */
+	func load(_: String) -> Pair {
+		.init(first: .number(0), second: .number(1))
+	}
+
+	func add(_: String) -> String {
+		""
 	}
 }
