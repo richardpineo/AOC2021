@@ -25,6 +25,8 @@ class Puzzles2021: PuzzlesRepo {
 			Puzzle(year: year, id: 16, name: "Packet Decoder") { Solve16() },
 			Puzzle(year: year, id: 17, name: "Trick Shot") { Solve17() },
 			Puzzle(year: year, id: 18, name: "Snailfish") { Solve18() },
+			Puzzle(year: year, id: 19, name: "Beacon Scanner") { Solve19() },
+			Puzzle(year: year, id: 20, name: "Trench Map") { Solve20() },
 		])
 	}
 
