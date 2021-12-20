@@ -94,6 +94,7 @@
 		BFC68CBD2765629D004FC9CF /* Input11.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFC68CB72765629D004FC9CF /* Input11.txt */; };
 		BFCF1FBB276FCD3E00502CF2 /* Examples18.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF1FBA276FCD3E00502CF2 /* Examples18.swift */; };
 		BFCF1FBC276FD32F00502CF2 /* Examples18.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF1FBA276FCD3E00502CF2 /* Examples18.swift */; };
+		BFCF1FBF27703E9000502CF2 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = BFCF1FBE27703E9000502CF2 /* Algorithms */; };
 		BFDDE9EE276AF33600AD1478 /* Solve15.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE9EB276AF33600AD1478 /* Solve15.swift */; };
 		BFDDE9EF276AF33600AD1478 /* Solve15.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE9EB276AF33600AD1478 /* Solve15.swift */; };
 		BFDDE9F0276AF33600AD1478 /* Example15.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFDDE9EC276AF33600AD1478 /* Example15.txt */; };
@@ -181,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCF1FBF27703E9000502CF2 /* Algorithms in Frameworks */,
 				BF30E9E8275733D800AEC5D7 /* AOCLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +474,7 @@
 			name = AOC2021;
 			packageProductDependencies = (
 				BF30E9E7275733D800AEC5D7 /* AOCLib */,
+				BFCF1FBE27703E9000502CF2 /* Algorithms */,
 			);
 			productName = AOC2021;
 			productReference = BF30E9B52757332C00AEC5D7 /* AOC2021.app */;
@@ -525,6 +528,7 @@
 			mainGroup = BF30E9AC2757332C00AEC5D7;
 			packageReferences = (
 				BF30E9E6275733D800AEC5D7 /* XCRemoteSwiftPackageReference "AOCLib" */,
+				BFCF1FBD27703E9000502CF2 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = BF30E9B62757332C00AEC5D7 /* Products */;
 			projectDirPath = "";
@@ -936,6 +940,14 @@
 				kind = branch;
 			};
 		};
+		BFCF1FBD27703E9000502CF2 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -943,6 +955,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BF30E9E6275733D800AEC5D7 /* XCRemoteSwiftPackageReference "AOCLib" */;
 			productName = AOCLib;
+		};
+		BFCF1FBE27703E9000502CF2 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFCF1FBD27703E9000502CF2 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

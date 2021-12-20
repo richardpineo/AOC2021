@@ -1,6 +1,7 @@
 
 import AOCLib
 import Foundation
+import Algorithms
 
 class Solve18: PuzzleSolver {
 	func solveAExamples() -> Bool {
@@ -52,18 +53,18 @@ class Solve18: PuzzleSolver {
 	}
 
 	func solveBExamples() -> Bool {
-		true
+		solveB(Self.bigFinal.input) == 3993
 	}
 
-	var answerA = ""
-	var answerB = ""
+	var answerA = "4480"
+	var answerB = "4676"
 
 	func solveA() -> String {
 		solve(Self.puzzleInput).magnitude.description
 	}
 
 	func solveB() -> String {
-		""
+		solveB(Self.puzzleInput).description
 	}
 
 	class Node {
@@ -289,7 +290,7 @@ class Solve18: PuzzleSolver {
 		var node = Node(contents: .pair(e1, e2), parent: nil)
 		e1.parent = node
 		e2.parent = node
-		print("  Add: \(node.description)")
+		// print("  Add: \(node.description)")
 
 		// Now that we have added, split and explode until it's all settled.
 		while true {
@@ -316,5 +317,13 @@ class Solve18: PuzzleSolver {
 			answer = add(&answer, &term)
 		}
 		return answer
+	}
+	
+	func solveB(_ input: String) -> Int {
+		let inputs = input.components(separatedBy: "\n").filter { !$0.isEmpty }
+
+		let perms = inputs.permutations(ofCount: 2).map { solve( $0.joined(separator: "\n" ) ).magnitude }
+		let max = perms.max()
+		return max!
 	}
 }
