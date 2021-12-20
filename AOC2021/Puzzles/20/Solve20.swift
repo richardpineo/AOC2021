@@ -4,23 +4,25 @@ import Foundation
 
 class Solve20: PuzzleSolver {
 	func solveAExamples() -> Bool {
-		solveA("Example20") == 35
+		solve("Example20", iterations: 2) == 35
 	}
 
 	func solveBExamples() -> Bool {
-		true
+		solve("Example20", iterations: 50) == 3351
 	}
 
-	var answerA = "4964" 
-	var answerB = ""
+	var answerA = "4964"
+	var answerB = "13202"
 
 	func solveA() -> String {
-		solveA("Input20").description
+		solve("Input20", iterations: 2).description
 	}
 
 	func solveB() -> String {
-		""
+		solve("Input20", iterations: 50).description
 	}
+
+	var shouldTestB: Bool = false
 
 	struct Image {
 		var algorithm: String
@@ -97,16 +99,15 @@ class Solve20: PuzzleSolver {
 
 		image.image = newImage
 
-		print(image.description)
+		// print(image.description)
 	}
 
-	func solveA(_ fileName: String) -> Int {
+	func solve(_ fileName: String, iterations: Int) -> Int {
 		var image = load(fileName)
 
-		print(image.description)
+		// print(image.description)
 		let backgroundToggles = image.algorithm.character(at: 0) == "#"
 
-		let iterations = 2
 		for i in 0 ..< iterations {
 			let background = (i % 2) == 1 ? (backgroundToggles ? true : false) : false
 			enhance(&image, background)
@@ -116,9 +117,5 @@ class Solve20: PuzzleSolver {
 			$0 + ($1.value ? 1 : 0)
 		}
 		return count
-	}
-
-	func solveB(_: String) -> Int {
-		0
 	}
 }
