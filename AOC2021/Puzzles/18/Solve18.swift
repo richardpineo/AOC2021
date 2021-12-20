@@ -22,7 +22,7 @@ class Solve18: PuzzleSolver {
 		if !exploded {
 			return false
 		}
-		
+
 		var node10 = Node(contents: .number(10), parent: nil)
 		var node11 = Node(contents: .number(11), parent: nil)
 		split(&node10)
@@ -31,9 +31,21 @@ class Solve18: PuzzleSolver {
 			return false
 		}
 
-		/*
-		 reduceTests
+		let summed = Self.sumTests.allSatisfy { test in
+			let inputs = test.input.components(separatedBy: "\n").filter { !$0.isEmpty }
+			var answer = load(inputs[0])
+			for i in 1 ..< inputs.count {
+				var term = load(inputs[i])
+				answer = add(&answer, &term)
+			}
+			print("\(inputs[0]) -> \(answer.description) : \(test.output)")
+			return answer.description == test.output
+		}
+		if !summed {
+			return false
+		}
 
+		/*
 		 sumTests
 
 		 magnitudeTests
@@ -59,26 +71,27 @@ class Solve18: PuzzleSolver {
 	func solveB() -> String {
 		""
 	}
-	
+
 	class Node {
 		init(contents: Element?, parent: Node?) {
 			self.contents = contents
 			self.parent = parent
 		}
+
 		var parent: Node?
 		var contents: Element?
-		
+
 		var description: String {
-			return contents?.description ?? ""
+			contents?.description ?? ""
 		}
-		
+
 		var depth: Int {
 			guard let p = parent else {
 				return 0
 			}
 			return p.depth + 1
 		}
-		
+
 		var root: Node {
 			if let p = parent {
 				return p.root
@@ -90,13 +103,13 @@ class Solve18: PuzzleSolver {
 	indirect enum Element {
 		case number(Int)
 		case pair(Node, Node)
-		
+
 		var description: String {
 			switch self {
 			case let .number(n):
 				return String(n)
 			case let .pair(n1, n2):
-				return  String("[\(n1.description),\(n2.description)]")
+				return String("[\(n1.description),\(n2.description)]")
 			}
 		}
 	}
@@ -112,7 +125,7 @@ class Solve18: PuzzleSolver {
 			pos += 1
 			child.contents = .pair(first, second)
 			return child
-			
+
 		case "0" ... "9":
 			let val = Int(String(s.character(at: pos)))!
 			pos += 1
@@ -128,7 +141,7 @@ class Solve18: PuzzleSolver {
 		var pos = 0
 		return load(s, parent: nil, pos: &pos)
 	}
-	
+
 	func findDepth4(_ n: Node) -> Node? {
 		if case let .pair(n1, n2) = n.contents {
 			if n.depth >= 4 {
@@ -144,7 +157,7 @@ class Solve18: PuzzleSolver {
 		}
 		return nil
 	}
-	
+
 	func rightmostChild(_ n: Node) -> Node? {
 		switch n.contents {
 		case .number:
@@ -155,19 +168,18 @@ class Solve18: PuzzleSolver {
 			return nil
 		}
 	}
-	
+
 	func sideMostChild(_ n: Node, left: Bool) -> Node? {
 		switch n.contents {
 		case .number:
 			return n
 		case let .pair(n1, n2):
-			return sideMostChild(left ? n1: n2, left: left)
+			return sideMostChild(left ? n1 : n2, left: left)
 		case .none:
 			return nil
 		}
 	}
 
-	
 	func sideOf(_ n: Node?, left: Bool) -> Node? {
 		guard let parent = n?.parent else {
 			return nil
@@ -181,7 +193,7 @@ class Solve18: PuzzleSolver {
 		}
 		return nil
 	}
-	
+
 	func explode(_ n: Node) -> Node? {
 		// Find one at depth 4
 		guard let deep = findDepth4(n) else {
@@ -189,25 +201,27 @@ class Solve18: PuzzleSolver {
 		}
 
 		guard case let .pair(left, right) = deep.contents,
-			  case let .number(leftVal) = left.contents,
-			  case let .number(rightVal) = right.contents
+		      case let .number(leftVal) = left.contents,
+		      case let .number(rightVal) = right.contents
 		else {
 			return nil
 		}
-		
+
 		if let leftNode = sideOf(deep, left: true),
-		  case  let .number(curLeftVal) = leftNode.contents {
+		   case let .number(curLeftVal) = leftNode.contents
+		{
 			leftNode.contents = .number(curLeftVal + leftVal)
 		}
 		if let rightNode = sideOf(deep, left: false),
-		   case let .number(curRightVal) = rightNode.contents {
+		   case let .number(curRightVal) = rightNode.contents
+		{
 			rightNode.contents = .number(curRightVal + rightVal)
 		}
-		
-		replace(existing: deep, with: Node(contents: .number(0), parent: nil) )
+
+		replace(existing: deep, with: Node(contents: .number(0), parent: nil))
 		return n
 	}
-	
+
 	func replace(existing: Node, with: Node) {
 		guard let parent = existing.parent else {
 			return
@@ -221,7 +235,7 @@ class Solve18: PuzzleSolver {
 			}
 		}
 	}
-	
+
 	func split(_ e: inout Node) {
 		guard case let .number(n) = e.contents else {
 			return
@@ -232,10 +246,10 @@ class Solve18: PuzzleSolver {
 		let left = Node(contents: .number(leftVal), parent: newNode)
 		let right = Node(contents: .number(rightVal), parent: newNode)
 		e.contents = .pair(left, right)
-						 
+
 		replace(existing: e, with: newNode)
 	}
-	
+
 	func add(_ e1: inout Node, _ e2: inout Node) -> Node {
 		let node = Node(contents: .pair(e1, e2), parent: nil)
 		e1.parent = node

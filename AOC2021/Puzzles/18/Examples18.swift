@@ -25,16 +25,15 @@ extension Solve18 {
 		Test(input: "[[3,[2,[8,0]]],[9,[5,[4,[3,2]]]]]", output: "[[3,[2,[8,0]]],[9,[5,[7,0]]]]"),
 	]
 
-	static let reduceTests = [
-		Test(input: "[[[[4,3],4],4],[7,[[8,4],9]]] + [1,1]", output: "[[[[0,7],4],[[7,8],[6,0]]],[8,1]]"),
-	]
-
-	struct SumTest {
-		var inputs: [String]
-		var output: [String]
-	}
-
 	static let sumTests = [
+		Test(input: """
+		[1,2]
+		[[3,4],5]
+		""", output: "[[1,2],[[3,4],5]]"),
+		Test(input: """
+		[[[[4,3],4],4],[7,[[8,4],9]]]
+		[1,1]
+		""", output: "[[[[0,7],4],[[7,8],[6,0]]],[8,1]]"),
 		Test(input: """
 		[1,1]
 		[2,2]
