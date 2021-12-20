@@ -1,7 +1,7 @@
 
+import Algorithms
 import AOCLib
 import Foundation
-import Algorithms
 
 class Solve18: PuzzleSolver {
 	func solveAExamples() -> Bool {
@@ -13,7 +13,7 @@ class Solve18: PuzzleSolver {
 		if !loaded {
 			return false
 		}
-		
+
 		let exploded = Self.explodeTests.allSatisfy {
 			let n = load($0.input)
 			let e = explode(n)!
@@ -47,7 +47,7 @@ class Solve18: PuzzleSolver {
 		if !magnituded {
 			return false
 		}
-		
+
 		let n = solve(Self.bigFinal.input)
 		return n.magnitude == Self.bigFinal.output
 	}
@@ -86,7 +86,7 @@ class Solve18: PuzzleSolver {
 			}
 			return p.depth + 1
 		}
-		
+
 		var magnitude: Int {
 			switch contents {
 			case let .number(v):
@@ -171,7 +171,8 @@ class Solve18: PuzzleSolver {
 		if case let .pair(n1, n2) = n.contents {
 			if n.depth >= 4,
 			   case .number = n1.contents,
-			   case .number = n2.contents {
+			   case .number = n2.contents
+			{
 				return n
 			}
 
@@ -183,17 +184,6 @@ class Solve18: PuzzleSolver {
 			}
 		}
 		return nil
-	}
-
-	func rightmostChild(_ n: Node) -> Node? {
-		switch n.contents {
-		case .number:
-			return n
-		case let .pair(_, n2):
-			return rightmostChild(n2)
-		case .none:
-			return nil
-		}
 	}
 
 	func sideMostChild(_ n: Node, left: Bool) -> Node? {
@@ -308,7 +298,7 @@ class Solve18: PuzzleSolver {
 			return node
 		}
 	}
-	
+
 	func solve(_ s: String) -> Node {
 		let inputs = s.components(separatedBy: "\n").filter { !$0.isEmpty }
 		var answer = load(inputs[0])
@@ -318,11 +308,11 @@ class Solve18: PuzzleSolver {
 		}
 		return answer
 	}
-	
+
 	func solveB(_ input: String) -> Int {
 		let inputs = input.components(separatedBy: "\n").filter { !$0.isEmpty }
 
-		let perms = inputs.permutations(ofCount: 2).map { solve( $0.joined(separator: "\n" ) ).magnitude }
+		let perms = inputs.permutations(ofCount: 2).map { solve($0.joined(separator: "\n")).magnitude }
 		let max = perms.max()
 		return max!
 	}
