@@ -988,8 +988,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/richardpineo/AOCLib";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 1.0.0;
 			};
 		};
 		BFCF1FBD27703E9000502CF2 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
